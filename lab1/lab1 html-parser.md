@@ -106,10 +106,9 @@ print(re.search(pat, '<a href="http://www.wandoujia.com/apps/com.zhihu.daily.and
 
 可以看见匹配文本的长度将是极其之大的，这是因为正则表达式匹配时都默认使用贪婪模式，再带有限定符处将尽可能多的匹配文本，这将导致很多不合法的答案，
 解决方法[^1]
-<a name="footnote1"></a>
 就是改为懒惰模式匹配，这将匹配尽可能少的文本，懒惰模式只需在原有的限定符后再加一个？即可。
 
-[^1]:<https://blog.csdn.net/qq_42667613/article/details/115859383> [跳转到注释1](#footnote1)
+[^1]:<https://blog.csdn.net/qq_42667613/article/details/115859383>
 ***
 
 
