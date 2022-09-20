@@ -66,7 +66,7 @@ r'''(?<=     # 零宽正向后行断言
 
 
 #### 分析与反思： #### 
-<span name="footnote1"></span>
+
 
 在运行时发现了问题，作出如下分析与反思:
 
@@ -106,13 +106,12 @@ print(re.search(pat, '<a href="http://www.wandoujia.com/apps/com.zhihu.daily.and
 
 可以看见匹配文本的长度将是极其之大的，这是因为正则表达式匹配时都默认使用贪婪模式，再带有限定符处将尽可能多的匹配文本，这将导致很多不合法的答案，
 解决方法[^1]
-<span name="footnote1"></span>
+<a name="footnote1"></a>
 就是改为懒惰模式匹配，这将匹配尽可能少的文本，懒惰模式只需在原有的限定符后再加一个？即可。
 
-[^1]:<https://blog.csdn.net/qq_42667613/article/details/115859383> 
+[^1]:<https://blog.csdn.net/qq_42667613/article/details/115859383> [跳转到注释1](#footnote1)
 ***
 
-[跳转到注释1]（#footnote1）
 
 ### 3.2.1 问题描述 ### 
 > &emsp; 给定任意网页内容，返回网页中所有图片地址，并将结果打印至文件res2.txt中，每一行为一个图片地址。
@@ -151,9 +150,9 @@ print(re.search(pat, '<a href="http://www.wandoujia.com/apps/com.zhihu.daily.and
 
 在爬取某些网站时发现会出现ssl库的证书验证报错，经参考后发现是爬取时需要对目标网页的SSL证书进行验证。
 
-解决方法[^2]大致是在全局下修改ssl库属性：
+解决方法[^2]<a name="footnote2"></a>大致是在全局下修改ssl库属性：
 
-[^2]:https://blog.csdn.net/tt75281920/article/details/104122012&gt;
+[^2]:https://blog.csdn.net/tt75281920/article/details/104122012 [跳转到注释2](#footnote2)
 ```
 import ssl
 
@@ -163,9 +162,9 @@ ssl._create_default_https_context = ssl._create_unverified_context
 1. 在爬取网站 _http://pexels.com_ 时出现报错：
 > urllib.error.HTTPError: HTTP Error 403: Forbidden
  
-经查询[^3]，发现 HTTP Error 403 Forbidden 报错的两个主要原因为：
+经查询[^3]<a name="footnote3"></a>，发现 HTTP Error 403 Forbidden 报错的两个主要原因为：
 
-[^3]:(https://blog.csdn.net/tangjinhu/article/details/99688599)
+[^3]:(https://blog.csdn.net/tangjinhu/article/details/99688599)  [跳转到注释3](#footnote3)
 
 * 网站所有者编辑了设置，使您无法访问资源，或者他们没有设置正确的权限。
 * .htaccess文件中的设置损坏或不正确。在您对文件进行更改后，可能会发生这种情况。您只需创建一个新的 .htaccess 文件即可轻松解决该问题。
@@ -264,9 +263,9 @@ File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/r
     raise HTTPError(req.full_url, code, msg, hdrs, fp)
 urllib.error.HTTPError: HTTP Error 418: 
 ```
-经过查询[^4],`HTTP Error 418' 是网站的反爬程序所返回的错误，需要调整报头信息来解决。
+经过查询[^4]<a name="footnote4"></a>,`HTTP Error 418' 是网站的反爬程序所返回的错误，需要调整报头信息来解决。
 
-[^4]:(https://blog.csdn.net/shenyuan12/article/details/107849794)
+[^4]:(https://blog.csdn.net/shenyuan12/article/details/107849794) [跳转到注释4](#footnote4)
 
 
 代码如下：
