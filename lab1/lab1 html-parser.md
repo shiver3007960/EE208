@@ -58,6 +58,8 @@ r'''(?<=     # 零宽正向后行断言
         return urlset
 
 运行结果如图:
+
+
 ```
 {'http://news.baidu.com', 'http://image.baidu.com/', 'http://image.baidu.com/i?tn=baiduimage&amp;ps=1&amp;ct=201326592&amp;lm=-1&amp;cl=2&amp;nc=1&amp;ie=utf-8', 'https://map.baidu.com/?newmap=1&amp;ie=utf-8&amp;s=s', 'https://b2b.baidu.com/s?fr=wwwt', 'https://www.baidu.com/s?rtt=1&amp;bsst=1&amp;cl=2&amp;tn=news', 'http://map.baidu.com', 'http://wenku.baidu.com/search?lm=0&amp;od=0&amp;ie=utf-8', 'http://tieba.baidu.com/', 'https://www.hao123.com?src=from_pc', 'javascript:;', 'http://zhidao.baidu.com/q?ct=17&amp;pn=0&amp;tn=ikaslist&amp;rn=10&amp;fr=wwwt', 'https://haokan.baidu.com/?sfrom=baidu-top', 'http://v.baidu.com/v?ct=301989888&amp;rn=20&amp;pn=0&amp;db=0&amp;s=25&amp;ie=utf-8', 'https://passport.baidu.com/v2/?login&tpl=mn&u=http%3A%2F%2Fwww.baidu.com%2F&sms=5', 'http://tieba.baidu.com/f?fr=wwwt', 'https://pan.baidu.com?from=1026962h', 'http://www.baidu.com/more/'}
 ```
@@ -102,7 +104,8 @@ print(re.search(pat, '<a href="http://www.wandoujia.com/apps/com.zhihu.daily.and
 
 
 可以看见匹配文本的长度将是极其之大的，这是因为正则表达式匹配时都默认使用贪婪模式，再带有限定符处将尽可能多的匹配文本，这将导致很多不合法的答案，
-解决方法&nbsp;&lt;https://blog.csdn.net/qq_42667613/article/details/115859383&gt;就是改为懒惰模式匹配，这将匹配尽可能少的文本，懒惰模式只需在原有的限定符后再加一个？即可。
+解决方法&nbsp; :<https://blog.csdn.net/qq_42667613/article/details/115859383>;
+ 就是改为懒惰模式匹配，这将匹配尽可能少的文本，懒惰模式只需在原有的限定符后再加一个？即可。
 
 ***
 
@@ -130,6 +133,8 @@ print(re.search(pat, '<a href="http://www.wandoujia.com/apps/com.zhihu.daily.and
 
         return urlset
 运行结果如下：
+
+
 <code>
 {'https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/tupian@2x-482fc011fc.png', 'https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/baiduyun@2x-e0be79e69e.png', 'https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/baike@2x-1fe3db7fa6.png', 'https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/jingyan@2x-e53eac48cb.png', 'https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/wenku@2x-f3aba893c1.png', 'https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/yinyue@2x-c18adacacb.png', 'https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/baobaozhidao@2x-af409f9dbe.png'}
 </code>
