@@ -3,13 +3,13 @@
 <center>姓名：刘洺皓 学号：521030910014</center>
 
 ## 1.实验概述 ## 
-&emsp;本实验旨在了解 HTML 的结构，并利用 _BeautifulSoup_ 对 HTML 文本进行分析。通过阅读_BeautifulSoup_ 的官方文档，接触了_BeautifulSoup_ 对tag的基本操作和在HTML元素中进行过渡的常用方法。该实验基于urllib库对网页发起请求，并在对不同URL的抓取中掌握了不同的tag类型与属性。在实验的第一部分与第二部分，主要通过查找指定类型的tag来获取相应内容，通过修改header中的各种参数来使浏览器模仿用户发起请求。在实验的第三部分，需要利用HTML文档中各个元素之间的联系来对具有确定树状结构的HTML文档，获取各类标签内的内容与属性，如超链接、图片地址等。本实验主要运用正则表达式，利用正则表达式引擎可以更快速，有效地对字符串文本进行匹配，并爬取到目标内容。 
+&emsp;本实验旨在了解 HTML 的结构，并利用 _BeautifulSoup_ 对 HTML 文本进行分析。通过阅读 _BeautifulSoup_ 的官方文档，接触了 _BeautifulSoup_ 对tag的基本操作和在HTML元素中进行过渡的常用方法。该实验基于 _urllib_ 库对网页发起请求，并在对不同URL的抓取中掌握了不同的tag类型与属性。在实验的第一部分与第二部分，主要通过查找指定类型的tag来获取相应内容，通过修改header中的各种参数来使浏览器模仿用户发起请求。在实验的第三部分，需要利用HTML文档中各个元素之间的联系来对具有确定树状结构的HTML文档，获取各类标签内的内容与属性，如超链接、图片地址等。本实验主要运用正则表达式，利用正则表达式引擎可以更快速，有效地对字符串文本进行匹配，并爬取到目标内容。 
 
 
 ## 2.实验环境 ##
 本实验具体使用的工具如下:
-* Docker中的sjtucmic/ee208镜像 
-* HTML解析器BeautifulSoup
+* Docker中的ee208镜像 
+* HTML解析器 _BeautifulSoup_
 * Python(Vscode)（运用到sys,Beautifulsoup,re,urllib库）
 
 ## 3.实验练习 ##
@@ -20,7 +20,7 @@
 
 ### 3.1.2 问题分析 ###
 
-&emsp; 只需要填充代码完成其中的 `parseURL` 函数，通过main函数的工作，网页内容已转换成_BeautifulSoup_对象，并通过调用`.read()`函数转化为bytes object,在parseURL函数中为了处理content, 先要用`.decode("UTF-8")`转化为string对象，再利用正则表达式进行匹配。（注：经查询，对于数据量较大的html文档，使用 _BeautifulSoup_ 解析器（尤其是 _lxml_ 解析器）来查找目标标签将是效率更高的方法，这里使用regex只是为了提供另一种解法。）
+&emsp; 只需要填充代码完成其中的 `parseURL` 函数，通过main函数的工作，网页内容已转换成     _BeautifulSoup_ 对象，并通过调用`.read()`函数转化为bytes object,在parseURL函数中为了处理content, 先要用`.decode("UTF-8")`转化为string对象，再利用正则表达式进行匹配。（注：经查询，对于数据量较大的html文档，使用 _BeautifulSoup_ 解析器（尤其是 _lxml_ 解析器）来查找目标标签将是效率更高的方法，这里使用regex只是为了提供另一种解法。）
  
 
 &emsp; 正则表达式的pattern分析：
@@ -65,7 +65,8 @@ r'''(?<=     # 零宽正向后行断言
 ```
 
 
-#### 分析与反思： ####
+#### 分析与反思： #### 
+<span name="footnote1"></span>
 
 在运行时发现了问题，作出如下分析与反思:
 
@@ -92,9 +93,9 @@ print(re.search(pat, '<a href="http://www.wandoujia.com/apps/com.zhihu.daily.and
 
 所以为了实现迭代器查找，推荐使用`re.finditer(pat, s)`方法。
 
-2. 为了使代码更为简洁，利用分组2来捕获目标文本，并通过调用Match.object.group()方法来输出字符串类型的所需答案，注意这里因为零宽断言不捕获文本，所以在字符串匹配时也不自动为其分配组号，所以regex文本中的`(.+?)`即是分组2。
+2. 为了使代码更为简洁，利用分组2来捕获目标文本，并通过调用`Match.object.group()`方法来输出字符串类型的所需答案，注意这里因为零宽断言不捕获文本，所以在字符串匹配时也不自动为其分配组号，所以regex文本中的`(.+?)`即是分组2。
 
-3. 在`re.compile(pat, s, flag)`的flag中设置`re.DOTALL`是为了将regex文本中的 ***.*** 的意义从除换行符外的任意字符改为任意字符，这样可以避免爬取到的html文档中在形如 `<a href = "...">...</a>`中出现换行符导致匹配失败。
+3. 在`re.compile(pat, s, flag)`的flag中设置`re.DOTALL`是为了将regex文本中的 ++.++ 的意义从除换行符外的任意字符改为任意字符，这样可以避免爬取到的html文档中在形如 `<a href = "...">...</a>`中出现换行符导致匹配失败。
 
 
 4.  若regex文本从`r'''(?<=<a href=(["']))\b(.+?)(?=\1.*>.*</a>)'''`改为`r'''(?<=<a href=(["']))\b(.+)(?=\1.*>.*</a>)'''`, 则输出结果将为
@@ -104,10 +105,14 @@ print(re.search(pat, '<a href="http://www.wandoujia.com/apps/com.zhihu.daily.and
 
 
 可以看见匹配文本的长度将是极其之大的，这是因为正则表达式匹配时都默认使用贪婪模式，再带有限定符处将尽可能多的匹配文本，这将导致很多不合法的答案，
-解决方法[^1]就是改为懒惰模式匹配，这将匹配尽可能少的文本，懒惰模式只需在原有的限定符后再加一个？即可。
+解决方法[^1]
+<span name="footnote1"></span>
+就是改为懒惰模式匹配，这将匹配尽可能少的文本，懒惰模式只需在原有的限定符后再加一个？即可。
 
-[^1]:<https://blog.csdn.net/qq_42667613/article/details/115859383>
+[^1]:<https://blog.csdn.net/qq_42667613/article/details/115859383> 
 ***
+
+[跳转到注释1]（#footnote1）
 
 ### 3.2.1 问题描述 ### 
 > &emsp; 给定任意网页内容，返回网页中所有图片地址，并将结果打印至文件res2.txt中，每一行为一个图片地址。
@@ -217,7 +222,9 @@ ssl._create_default_https_context = ssl._create_unverified_context
 &emsp;根据HTML元素的嵌套结构，可知目标的图片链接，内容描述（互为兄弟节点）都是网页链接所在tag的儿子，而网页链接所属tag的class属性均是 *"link button"*,可以通过 _BeautifulSoup_ 的 `find_all( name , attrs , recursive , text , **kwargs )` 方法来查找，而且tag对象的属性是以字典形式存储，可以通过以键取值的方法获取超链接，(即 `tag.["href"]`),可以利用 `tag.contents` 方法获取以列表形式存储的子节点，并通过 `tag.string` 方法获取 _NavigableString_ 对象。（注： 也可利用 `tag.children` 或者 `tag.sibling` 获取相应节点）
 
 
-### 3.2.3 代码与运行结果 ### 
+### 3.3.3 代码与运行结果 ### 
+
+
  代码展示如下: 
 
 ```
