@@ -163,6 +163,17 @@ ssl._create_default_https_context = ssl._create_unverified_context
 2. 在爬取网站 _http://pexels.com_ 时出现报错：
 > urllib.error.HTTPError: HTTP Error 403: Forbidden
  
+markdown[^1]
+
+[^1]:https://blog.csdn.net/tangjinhu/article/details/99688599
+
+
+经[查询](https://blog.csdn.net/tangjinhu/article/details/99688599)，发现 HTTP Error 403 Forbidden 报错的两个主要原因为：
+
+* 网站所有者编辑了设置，使您无法访问资源，或者他们没有设置正确的权限。
+* .htaccess文件中的设置损坏或不正确。在您对文件进行更改后，可能会发生这种情况。您只需创建一个新的 .htaccess 文件即可轻松解决该问题。
+
+这里做出推测，有可能是网站的反爬机制在起作用，也有可能是爬虫爬取到了某些无价值网站，此网站由于本身的配置问题而报错：HTTP Error 403。
  ***
 
 ### 3.3.1 问题描述 ### 
