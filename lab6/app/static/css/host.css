@@ -1,0 +1,336 @@
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    height: 100%;
+    width: 100%;
+}
+body > iframe[class='backgroundImage']{
+    background-image: url(../image/pexels-wallpaper/wallpaper.0.jpg);
+    background-size: contain;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    z-index:-20;
+}
+/* 重置样式 通配符*/
+*{
+    font-family: Arial;
+    font-size:14px;
+    margin: 0;
+    padding: 0;
+    border: none
+}
+/* 头部 */
+header{
+    position: relative;
+    line-height: 25px;
+    height: 15%;
+    width: 100%;
+    background-color: transparent
+}
+header > .headercontainer{
+    height: 66.67%;
+    width: 100%;
+    display: flex;
+    justify-items: flex-start;
+}
+header .mainmenuleftbar{
+    height: 100%;
+    width: 70%;
+    display: flex;
+    justify-items: flex-start;
+}
+header .mainmenurightbar{
+    height: 100%;
+    width: 30%;
+    display: flex;
+    justify-items: flex-start;
+    align-items: center;
+}
+header .mainmenurightbar > .rightbartextgeneral, header .mainmenurightbar > .settingsrightBar{
+    height: 100%;
+    width: 40%;
+    display: flex;
+    justify-items: flex-start;
+    align-items: center;
+    padding:0px 10px;
+}
+header .mainmenurightbar .rightbartextgeneral a{
+    font-size: medium;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-decoration: none;
+    color: white;
+    padding: 2px 10px 2px 10px;
+}
+header .mainmenurightbar .settingsrightBar{
+    padding: 2px 5px 2px 30px;
+    display: flex;
+    align-items: center;
+}
+header .mainmenurightbar .settingsrightBar img, header .mainmenurightbar .settingsrightBar svg{
+    height: 30px;
+    width: 30px;
+    padding: 2px 20px 2px 5px;
+}
+header .mainmenurightbar .rightbartextgeneral a:hover, header .mainmenurightbar > .settingsrightBar a:hover{
+    text-decoration: underline;
+}
+header .headerpromptleft{
+    position: absolute;
+    top: -25%;
+    left: calc(82% + 15px);
+    height: 33.33%;
+    width:110px;
+    color:white;
+    position: relative;
+    display: none;
+    flex-flow: column;
+    align-items: center;
+}
+header .headerpromptleft .prompttriangle, header .headerpromptright .prompttriangle{
+    height: 0px;
+    width: 0px;
+    border-bottom:6px solid;
+    border-left: 10px solid;
+    border-right: 10px solid;
+    border-color: transparent transparent darkgrey transparent;
+}
+header .headerpromptleft .promptleftbar{
+    width: 110px;
+    height: 30px;
+    border-radius: 8px;
+    font-size: medium;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    background-color:darkgrey;
+    color: white;
+}
+header .headerpromptright{
+    position: absolute;
+    top: -25%;
+    left: calc(82% + 30px);
+    height: 33.33%;
+    width:110px;
+    color:white;
+    position: relative;
+    display: none;
+    flex-flow: column;
+    align-items: flex-end;
+}
+header .headerpromptright .promptrightbar{
+    width: 200px;
+    height: 80px;
+    border-radius: 8px;
+    border-top-right-radius: 0px;
+    font-size: medium;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    background-color:darkgrey;
+    color: white;
+}
+nav{
+    height: 0px;
+}
+/* main */
+.main{
+    position: relative;
+    width: 100%;
+    height: 70%;
+    background-color:transparent
+}
+.main > aside{
+    width: 0px;
+    height: 0px;
+}
+.main > article{
+    position: relative;
+    left: 20%;
+    top: 10%;
+    width: 60%;
+    height: 80%;
+    overflow: hidden;
+    white-space: nowrap
+}
+.main > article >.logo{
+    position: relative;
+    top: 10%;
+    left: calc((100% - 194px)/2);
+}
+.queryBox{
+    position: relative;
+    top:60px;
+    height: 44px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+div.searchPart{
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+}
+.main > article .before-half-radius{
+    position: relative;
+    background-color:white;
+    height:44px;
+    width:22px;
+    border-top-left-radius: 22px;
+    border-bottom-left-radius: 22px;
+    order: 0;
+}
+.main > article .submitbutton{
+    background-color:white;
+    position: relative;
+    height: 44px;
+    width: 24px;
+    order: 1;
+}
+button.submitButton{
+    position: relative;
+    top: 2px;
+    width: 24px;
+    height: 24px;
+}
+.searchPart > .searchInput{
+    width: 400px;
+    order: 3;
+}
+.searchQuery{
+    width: 400px;
+    height: 44px;
+}
+svg.searchBox{
+    position: relative;
+    top:8px;
+    width: 24px;
+    height: 24px;
+    background-color:white;
+}
+svg.searchBox:hover{
+    text-decoration: underline;
+}
+.main > article .backslash{
+    background-color:white;
+    height: 44px;
+    width: 24px;
+    order: 4;
+}
+.main > article .speaker{
+    background-color:white;
+    height: 44px;
+    width: 24px;
+    order: 5;
+}
+.main > article .rear-half-radius{
+    left: calc(100% -24px -24px -400px - 24px -22px - 40px);
+    background-color:white;
+    height:44px;
+    width:22px;
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
+    order: 6;
+}
+.main > article >.shortcut{
+    position: relative;
+    width: 100%;
+    top:80px;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+.main > article .shortcutitem{
+    position: relative;
+    padding: 20px 20px 10px 40px;
+}
+.main > article .shortcutitem .shortcutsetting{
+    position: absolute;
+    top: 10px;
+    left: 80px;
+}
+.main > article .shortcutitem .shortcutsetting button{
+    background-color: transparent;
+    border-radius: 20px;
+}
+.main > article .shortcutitem .shortcutsetting button:hover{
+    background-color: gainsboro;
+    opacity: 0.5;
+}
+.main > article .shortcutitem .shortcutsetting svg{
+    width: 25px;
+    height: 25px;
+}
+.main > article >.shortcut .shortcutbutton{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: white;
+}
+.main > article >.shortcut>.shortcutitem img{
+    position: relative;
+    top:12px;
+    left: 12px;
+    width: 25px;
+    height: 25px;
+    border-radius: 4px;
+}
+.main > article >.shortcut>.shortcutitem a{
+    text-decoration: none;
+}
+.main > article >.shortcut>.shortcutitem .title-title{
+    width: 70px;
+    height: 25px;
+    position: relative;
+    text-align: center;
+    top:8px;
+    left:-12px;
+    font-size: x-small;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    word-break: break-all;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.main > article >.shortcut>.shortcutitem .title-title:hover{
+    text-decoration: underline;
+}
+footer{
+    background-color: transparent;
+    top: 85%;
+    height: 15%;
+    width: 100%;
+    clear: both;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+footer > .footercontainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+}
+footer .aboutInfobar,footer .environmentBar,footer .personalInfoBar{
+    background-color:transparent;
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+footer .aboutInfobar a,footer .environmentBar a,footer .personalInfoBar a{
+    font-size: small;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-decoration: none;
+    color: white;
+    padding: 2px 10px 2px 10px;
+}
+footer .aboutInfobar a:hover, footer .environmentBar a:hover,footer .personalInfoBar a:hover{
+    text-decoration: underline;
+}

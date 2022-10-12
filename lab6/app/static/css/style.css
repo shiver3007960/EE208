@@ -1,0 +1,80 @@
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    height: 100%;
+    width: 100%;
+}
+/* 重置样式 通配符*/
+*{
+    font-family: Arial;
+    font-size:14px;
+    margin: 0;
+    padding: 0;
+    border: none
+}
+ul li {
+    list-style: none
+}
+a{
+    text-decoration: none
+}
+/* 头部 */
+header{
+    position: relative;
+    line-height: 25px;
+    height: 10%;
+    width: 1500px;
+    padding: 1px;
+}
+nav{
+    line-height: 30px;
+    text-align: left;
+    height: 8%;
+    width: 1500px;
+    padding: 1px;
+}
+.hr_dotted{
+    border:0;
+    border-top: 2px solid;
+    color: gainsboro;
+    width: 1000px;
+}
+/* main */
+.main{
+    position: relative;
+    width: 1000px;
+    height: 1000px;
+    margin: 10px 10px 10px 10px;
+    padding-bottom: 20px;
+}
+.main > aside{
+    position: absolute;
+    left: calc(60% - 30px + 20px);
+    float: right;
+    padding: 10px;
+    width: calc(40% - 10px);
+    overflow: hidden;
+    white-space: nowrap
+}
+.main > article{
+    position: relative;
+    float: left;
+    width: calc(60% - 30px);
+    overflow: hidden;
+    padding: 10px;
+    white-space: nowrap
+}
+footer{
+    background-color: gainsboro;
+    top: calc(18% + 4px + 1020px);
+    height: 40px;
+    width: 100%;
+    clear: both;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    background-color: #d6d6d6;
+}
+

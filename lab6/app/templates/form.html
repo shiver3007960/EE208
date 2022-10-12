@@ -1,0 +1,471 @@
+{% extends "base.html" %}
+{% block title%}
+{{URLtitle}}
+{% endblock %}
+
+{% block stylesheet%}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/form.css') }}">
+{% endblock %}
+
+{% block header%}
+<div class="searchBox" style="display:flex;justify-content:flex-start;align-items: center;">
+    <div class="logo">
+        <a href="https://www.google.com/webhp?hl=en&amp;sa=X&amp;ved=0ahUKEwjSyur2zs36AhVLLUQIHaeHBVAQPAgI" title="Go to Google Home" id="logo">
+            <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" style="background:none" alt="Google" height="30" width="92">
+    
+        </a>
+    </div>
+    <div class="queryBox">
+        <form class="searchForm" action="/search" id="tsf" data-submitfalse="q" method="GET" name="f" role="search"> 
+            <div class="searchPart">
+                <div class="before-half-radius"></div>
+                <div class="submitbutton"> 
+                    <button class="submitButton" type="submit" > 
+                        <div class="submitButton">
+                            <span class="submitButton">
+                            <svg focusable="false"class="searchBox" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                                </path>
+                            </svg>
+                            </span>
+                        </div>
+                    </button> 
+                </div>
+                <div class="searchInput">
+                    <input class="searchQuery" maxlength="2048" name="q" type="text" autocapitalize="off" autocomplete="on" autocorrect="on" role="combobox" spellcheck="false" value="" placeholder="Google" >
+                    <input class="hiddenpage" name="fn" value="1" type="hidden">
+                </div>
+                <div class="backslash"> 
+                    <div role="button" tabindex="1">
+                        <span class="ExCKkf z1asCe rzyADb">
+                            <svg focusable="false" class="searchBox" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+                                </path>
+                            </svg>
+                        </span> 
+                    </div>
+                </div>
+                <div class="speaker"> 
+                    <div role="button" class="speaker" tabindex="0">
+                        <svg class="searchBox" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="#4285f4" d="m12 15c1.66 0 3-1.31 3-2.97v-7.02c0-1.66-1.34-3.01-3-3.01s-3 1.34-3 3.01v7.02c0 1.66 1.34 2.97 3 2.97z">
+                            </path>
+                            <path fill="#34a853" d="m11 18.08h2v3.92h-2z">
+                            </path>
+                            <path fill="#fbbc05" d="m7.05 16.87c-1.27-1.33-2.05-2.83-2.05-4.87h2c0 1.45 0.56 2.42 1.47 3.38v0.32l-1.15 1.18z">
+                            </path>
+                            <path fill="#ea4335" d="m12 16.93a4.97 5.25 0 0 1 -3.54 -1.55l-1.41 1.49c1.26 1.34 3.02 2.13 4.95 2.13 3.87 0 6.99-2.92 6.99-7h-1.99c0 2.92-2.24 4.93-5 4.93z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="rear-half-radius"></div> 
+            </div>
+        </form>
+        
+    </div>
+    <div class="moreSettings">
+        <div class="moresettings" role="button" tabindex="0">
+            <span class="moreSettings">
+                <button class="settingButton"> 
+                    <svg class="searchBox" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M13.85 22.25h-3.7c-.74 0-1.36-.54-1.45-1.27l-.27-1.89c-.27-.14-.53-.29-.79-.46l-1.8.72c-.7.26-1.47-.03-1.81-.65L2.2 15.53c-.35-.66-.2-1.44.36-1.88l1.53-1.19c-.01-.15-.02-.3-.02-.46 0-.15.01-.31.02-.46l-1.52-1.19c-.59-.45-.74-1.26-.37-1.88l1.85-3.19c.34-.62 1.11-.9 1.79-.63l1.81.73c.26-.17.52-.32.78-.46l.27-1.91c.09-.7.71-1.25 1.44-1.25h3.7c.74 0 1.36.54 1.45 1.27l.27 1.89c.27.14.53.29.79.46l1.8-.72c.71-.26 1.48.03 1.82.65l1.84 3.18c.36.66.2 1.44-.36 1.88l-1.52 1.19c.01.15.02.3.02.46s-.01.31-.02.46l1.52 1.19c.56.45.72 1.23.37 1.86l-1.86 3.22c-.34.62-1.11.9-1.8.63l-1.8-.72c-.26.17-.52.32-.78.46l-.27 1.91c-.1.68-.72 1.22-1.46 1.22zm-3.23-2h2.76l.37-2.55.53-.22c.44-.18.88-.44 1.34-.78l.45-.34 2.38.96 1.38-2.4-2.03-1.58.07-.56c.03-.26.06-.51.06-.78s-.03-.53-.06-.78l-.07-.56 2.03-1.58-1.39-2.4-2.39.96-.45-.35c-.42-.32-.87-.58-1.33-.77l-.52-.22-.37-2.55h-2.76l-.37 2.55-.53.21c-.44.19-.88.44-1.34.79l-.45.33-2.38-.95-1.39 2.39 2.03 1.58-.07.56a7 7 0 0 0-.06.79c0 .26.02.53.06.78l.07.56-2.03 1.58 1.38 2.4 2.39-.96.45.35c.43.33.86.58 1.33.77l.53.22.38 2.55z">
+                        </path>
+                        <circle cx="12" cy="12" r="3.5">
+                        </circle>
+                    </svg>
+                </button>
+            </span>
+            <div class="settings" style="display:none ;">Settings</div>
+        </div>
+        <div class="settingsBarpic">
+            <a class="settingsPic" aria-label="Google apps" href="https://www.google.com/intl/en/about/products?tab=rh" aria-expanded="false" role="button" tabindex="0" target="_top">
+                <button class="settingButton"> 
+                    <svg class="gb_Ue" focusable="false" viewBox="0 0 24 24">
+                        <path d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z">
+                        </path>
+                    </svg>
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block nav%}
+<div>
+    <div class="NavigationBar">
+    <div class="Navigationitem" data-vid="0">
+        <span class="Navigationitem">
+            <span class="Navigationitem">
+                <svg class="Navigationitem" focusable="false" viewBox="0 0 24 24">
+                    <path fill="#34a853" d="M10 2v2a6 6 0 0 1 6 6h2a8 8 0 0 0-8-8">
+                    </path>
+                    <path fill="#ea4335" d="M10 4V2a8 8 0 0 0-8 8h2c0-3.3 2.7-6 6-6">
+                    </path>
+                    <path fill="#fbbc04" d="M4 10H2a8 8 0 0 0 8 8v-2c-3.3 0-6-2.69-6-6">
+                    </path>
+                    <path fill="#4285f4" d="M22 20.59l-5.69-5.69A7.96 7.96 0 0 0 18 10h-2a6 6 0 0 1-6 6v2c1.85 0 3.52-.64 4.88-1.68l5.69 5.69L22 20.59">
+                    </path>
+                </svg>
+            </span>All
+        </span>
+    </div>
+    <div class="Navigationitem" data-vid="1">
+        <a href="/images?fn=1">
+            <span class="Navigationitem">
+                <svg class="Navigationitem" focusable="false" viewBox="0 0 24 24">
+                    <path d="M14 13l4 5H6l4-4 1.79 1.78L14 13zm-6.01-2.99A2 2 0 0 0 8 6a2 2 0 0 0-.01 4.01zM22 5v14a3 3 0 0 1-3 2.99H5c-1.64 0-3-1.36-3-3V5c0-1.64 1.36-3 3-3h14c1.65 0 3 1.36 3 3zm-2.01 0a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h7v-.01h7a1 1 0 0 0 1-1V5">
+
+                    </path>
+                </svg>
+                Images
+            </span>
+        </a>
+    </div>
+    <div class="Navigationitem" data-vid="2">
+        <a href="https://maps.google.com/maps?q=google&amp;um=1&amp;ie=UTF-8&amp;sa=X&amp;ved=2ahUKEwiK4q_qu876AhVgEkQIHWbfAiAQ_AUoAnoECAIQBA" >
+            <span class="Navigationitem">
+                <svg class="Navigationitem" focusable="false" viewBox="0 0 16 16">
+                    <path d="M7.503 0c3.09 0 5.502 2.487 5.502 5.427 0 2.337-1.13 3.694-2.26 5.05-.454.528-.906 1.13-1.358 1.734-.452.603-.754 1.508-.98 1.96-.226.452-.377.829-.904.829-.528 0-.678-.377-.905-.83-.226-.451-.527-1.356-.98-1.959-.452-.603-.904-1.206-1.356-1.734C3.132 9.121 2 7.764 2 5.427 2 2.487 4.412 0 7.503 0zm0 1.364c-2.283 0-4.14 1.822-4.14 4.063 0 1.843.86 2.873 1.946 4.177.468.547.942 1.178 1.4 1.79.34.452.596.99.794 1.444.198-.455.453-.992.793-1.445.459-.61.931-1.242 1.413-1.803 1.074-1.29 1.933-2.32 1.933-4.163 0-2.24-1.858-4.063-4.139-4.063zm0 2.734a1.33 1.33 0 11-.001 2.658 1.33 1.33 0 010-2.658">
+
+                    </path>
+                </svg>
+                Maps
+            </span>
+        </a>
+    </div>
+    <div class="Navigationitem" data-vid="3">
+        <a href="/news?fn=1" data-hveid="CAIQBQ">
+            <span class="Navigationitem">
+                <svg class="Navigationitem" focusable="false" viewBox="0 0 24 24">
+                    <path d="M12 11h6v2h-6v-2zm-6 6h12v-2H6v2zm0-4h4V7H6v6zm16-7.22v12.44c0 1.54-1.34 2.78-3 2.78H5c-1.64 0-3-1.25-3-2.78V5.78C2 4.26 3.36 3 5 3h14c1.64 0 3 1.25 3 2.78zM19.99 12V5.78c0-.42-.46-.78-1-.78H5c-.54 0-1 .36-1 .78v12.44c0 .42.46.78 1 .78h14c.54 0 1-.36 1-.78V12zM12 9h6V7h-6v2">
+
+                    </path>
+                </svg>
+                News
+            </span>
+        </a>
+    </div>
+    <div class="Navigationitem" data-vid="4">
+        <a href="/search?q=google&amp;source=lnms&amp;tbm=shop&amp;sa=X&amp;ved=2ahUKEwiK4q_qu876AhVgEkQIHWbfAiAQ_AUoBHoECAIQBg" data-hveid="CAIQBg">
+            <span class="Navigationitem">
+                <svg class="Navigationitem" focusable="false" viewBox="0 0 24 24">
+                    <path d="M21.11 2.89A3.02 3.02 0 0 0 18.95 2h-5.8c-.81 0-1.58.31-2.16.89L7.25 6.63 2.9 10.98a3.06 3.06 0 0 0 0 4.32l5.79 5.8a3.05 3.05 0 0 0 4.32.01l8.09-8.1c.58-.58.9-1.34.9-2.16v-5.8c0-.81-.32-1.59-.89-2.16zM20 10.85c0 .28-.12.54-.32.74l-3.73 3.74-4.36 4.36c-.41.41-1.08.41-1.49 0l-2.89-2.9-2.9-2.9a1.06 1.06 0 0 1 0-1.49l8.1-8.1c.2-.2.46-.3.74-.3l5.8-.01A1.05 1.05 0 0 1 20 5.05v5.8zM16 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2">
+
+                    </path>
+                </svg>
+                Shopping
+            </span>
+        </a>
+    </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block article%}
+<div class="appbar" data-st-cnt="top" id="appbar">
+    <div id="extabar">
+        <div style="position:relative">
+            <div class="searchResultNumber">
+                <div id="result-stats" style="font-size:medium;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">About {{searchGeneral[0]}} results ({{searchGeneral[1]}} seconds)&nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<div class="searchResultgeneral">
+{% for i in range(lenmainContent[0], lenmainContent[1])%}
+{% if mainContent['path'][i] %}
+<div class="searchResult">
+    <div class="websitesetting">
+        <button type="button" class="websitesettingbutton">
+            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                </path>
+            </svg>
+        </button>
+    </div>
+    <div class="searchResultformat" lang="en">
+        <div class="URL">
+            <a href={{mainContent['the full URL'][i]}}>
+                <h2 class="URLtitle">{{mainContent['URLTitle'][i]}}</h2>
+                <div class="URLInfo">
+                    <cite class="URLInfo" role="text">{{mainContent['scheme+netloc'][i]}}
+                        <span class="URLInfo" role="text">{{mainContent['path'][i]}}</span>
+                    </cite>
+                </div>
+            </a>
+        </div>
+        <div class="contentgeneral">
+            <div class="contentPic" data-content="0">
+                <img src={{mainContent['imgsrc'][i]}}>
+            </div>
+            <div class="contentframe">
+                <div class="content" data-content="1">
+                    <div class="mainContent">
+                        <span>{{mainContent['theMainDescription'][i]}}</span>
+                    </div>
+                </div>
+                <div class="content" data-content="2" style="margin-top:5px;margin-bottom:5px">
+                    <div class="contentMore">
+                        <div class="contentMore" data-index="2">
+                            <span class="YrbPuc WGKbId BBwThe">{{mainContent['Additional information'][i]}}</span>
+                            <span class="wHYlTd z8gr9e">
+                                <a href="#" ></a>
+                                <a href="#"></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article_hr_dotted"></div>
+{% endif %}
+{% endfor %}
+</div>
+<div class="relatedSearch" role="button" tabindex="0">
+    {% for i in range(0, lenrelatedSearch)%}
+    <div class="relatedsearch" data-backslash={{i}}>
+        <div class="before-half-radius"></div>
+        <div class="relatedSearchContent">
+            <a href={{relatedSearch['href'][i]}}>
+                 <span>{{relatedSearch['content'][i]}}</span>
+            </a>
+        </div>
+        <div class="backslash" > 
+            <div role="button" tabindex="1" style="height:40px; background-color:gainsboro">
+                <span class="ExCKkf z1asCe rzyADb">
+                    <svg focusable="false" class="rss" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:15px;width:15px;background-color:gainsboro;position:relative;top:10px;">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+                        </path>
+                    </svg>
+                </span> 
+            </div>
+        </div> 
+        <div class="rear-half-radius"></div>
+    </div>
+    {% endfor %}
+</div>
+<div role="pagechange">
+    <table class="pagechangetable">
+        <tbody align="center">
+            <tr valign="tops">
+                <td class="hiddenpage">
+                    <span class="pagebkg" google-page-icon="0" pagenumber={{lenpagechangetable}}>
+                     </span>
+                </td>
+                {% for i  in range(0, lenpagechangetable)%}
+                <td class="page">
+                    <a class="page" href="">
+                        <span class="pagebkg" google-page-icon={{i+1}}>
+                        </span>
+                        <span class="pagenumber">{{i+1}}</span>
+                    </a>
+                </td>
+                {% endfor %}
+                <td>
+                    <a href="/search?q=google&amp;ei=k4w_Y67xIK3WkPIP3ZCrmAw&amp;start=10&amp;sa=N&amp;ved=2ahUKEwjuhpn2hs36AhUtK0QIHV3ICsMQ8NMDegQIARAK" id="pnnext" style="text-align:left">
+                        <span class="pagebkg" google-page-icon="g">
+                        </span>
+                    </a>
+                </td>
+                <td>
+                    <a class="page" href="/search?q=google&amp;ei=k4w_Y67xIK3WkPIP3ZCrmAw&amp;start=30&amp;sa=N&amp;ved=2ahUKEwjuhpn2hs36AhUtK0QIHV3ICsMQ8tMDegQIARAI">
+                        <span class="pagebkg" google-page-icon="l">
+                        </span>
+                    </a>
+                </td>
+                <td class="pagenext" role="heading">
+                    <a href="" id="pnnext" style="text-align:left">
+                        <span class="pagebkg" google-page-icon="e">
+                        </span>
+                        <span class="pagenumber" style="position: relative;left:3px;">Next</span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block aside%}
+<div class="asideBar">
+    <div class="vertical-segment"></div>
+    <div class="asideInfo">
+        <div class="asidePic">
+            <div class="asidePicBanner">
+                <span>Related searches:</span>
+            </div>
+            {% for i in range(0, lenrecommendPic)%}
+            <section class="recommendPic">
+                <div class="recommendPicAttr">
+                    <div class="Attrpic">
+                        <a target="_blank" class="recommendpic" href={{recommendPic['URLhref'][i]}}>
+                            <span class="cover-img-boder_1-OG1 c-img-radius-large">
+                            </span>
+                        <img src={{recommendPic['URLimgSrc'][i]}} class="c-img c-img2 c-img-radius-large">
+                        </a>
+                        <a class="img-container" target="_blank" href="#">
+                        </a><!--1468-->
+                    </div>
+                    <div class="Attrtitle">
+                        <a target="_blank" class="c-font-medium inc_rs_a" title={{recommendPic['URLTitle'][i]}} href={{recommendPic['URLhref'][i]}}s>
+                            <span>
+                                {{recommendPic['URLTitle'][i]}}
+                            </span>
+                        </a>
+                    </div>
+                    <div class="Attrinfo">
+                        <p class="AttrinfoTag">{{recommendPic['URLBrief'][i]}}</p>
+                    </div><!--1469-->
+                </div>
+                </section>
+            {% endfor %}
+        </div>
+        <div class="hotspots">
+            <div class="hotspotsgeneral" title="热搜">
+                <samp style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;font-size:large"> 热搜排行:</samp>
+            </div>
+            <div class="hotspotstitle" data-click="true" title="热搜" style="position: absolute;left:250px;top:-8px;">
+                <a class="hotspotslink" href="https://top.baidu.com/board?platform=pc&amp;sa=pcindex_a_right" target="_blank">
+                    <svg class="hotspotstitle" focusable="false" viewBox="0 0 24 24">
+                        <path d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z">
+                        </path>
+                    </svg>
+                    <div class="hotspotschange"  style="text-decoration:none;display:inline-block">
+                        <span style="position:relative;top:-14px">换一换</span>
+                    </div>
+                </a>
+            </div>
+            <div class="hotspotsdata">
+                <div class="hotspotsData">
+                    <div class="hotspotscontainer" data-id="active">
+                        <div class="hotspotsdetail" style="display: flex;justify-content:baseline">
+                            <span class="hotspotsrank" data-rank="0" style="opacity:1;">
+                            </span>
+                            <a target="_blank" title={{hotspots['Description'][0]}} href={{hotspots['href'][0]}} class="c-font-medium c-color-t opr-toplist1-subtitle_3FULy">
+                                {{hotspots['Description'][0]}}
+                            </a>
+                        </div>
+                    </div>
+                    {% for i in range(1, lenhotspots)%}
+                    <div class="hotspotscontainer">
+                        <div class="hotspotsdetail">
+                            <span class="hotspotsrank" data-rank="1">
+                            {{i}}
+                            </span>
+                            <a target="_blank" title={{hotspots['Description'][i]}} href={{hotspots['href'][i]}} class="c-font-medium c-color-t opr-toplist1-subtitle_3FULy">
+                                {{hotspots['Description'][i]}}
+                            </a>
+                            <span class="hotspotshot">
+                                热
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+
+
+</div>
+{% endblock %}
+
+{% block footer%}
+<div class="footercontainer">
+    <div class="environmentBar">
+        <a class="environmentInfo" href="https://sustainability.google/carbon-free/?utm_source=googlehpfooter&amp;utm_medium=housepromos&amp;utm_campaign=bottom-footer&amp;utm_content=" ping="/url?sa=t&amp;rct=j&amp;source=webhp&amp;url=https://sustainability.google/carbon-free/%3Futm_source%3Dgooglehpfooter%26utm_medium%3Dhousepromos%26utm_campaign%3Dbottom-footer%26utm_content%3D&amp;ved=0ahUKEwjSjPzJ69D6AhWQBUQIHVrJBAUQiM8HCBE">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAYCAMAAAAiV0Z6AAAAPFBMVEVLoEN0wU6CzFKCzFKCzFKCzFKCzFJSo0MSczNDmkCCzFJPoUMTczNdr0gmgziCzFITczMTczMTczMTczPh00jOAAAAFHRSTlPF/+bIsms8Ad///hX+//5/tXw7aMEAx10AAACaSURBVHgBbc4HDoRQCATQ33tbvf9dF9QxaCT9UQaltLHOh/golXKhMs5Xqa0xU1lyoa2fXFyQOsDG38qsLy4TaV+sFislovyhPzLJJrBu6eQOtpW0LjbJkzTuTDLRVNKa3uxJI+VdiRqXSeu6GW+Qxi29eLIi8H7EsYrT42BD+mQtNO5JMjRuC4lSY8V4hsLX0egGijvUSEP9AbylEsOkeCgWAAAAAElFTkSuQmCC" class="Pb9hCb" alt="" data-atf="1" data-frt="0">
+            Carbon neutral since 2007
+        </a>
+    </div>
+    <div class="aboutInfobar">
+        <a class="aboutInfo" href="https://www.google.com/intl/en_us/ads/?subid=ww-ww-et-g-awa-a-g_hpafoot1_1!o2&amp;utm_source=google.com&amp;utm_medium=referral&amp;utm_campaign=google_hpafooter&amp;fg=1">
+            Advertising
+        </a>
+        <a class="aboutInfo" href="https://www.google.com/services/?subid=ww-ww-et-g-awa-a-g_hpbfoot1_1!o2&amp;utm_source=google.com&amp;utm_medium=referral&amp;utm_campaign=google_hpbfooter&amp;fg=1">
+            Business
+        </a>
+        <a class="aboutInfo" href="https://google.com/search/howsearchworks/?fg=1">
+            How Search works 
+        </a>
+    </div>
+    <div class="personalInfoBar">
+        <a class="personalInfo" href="https://policies.google.com/privacy?hl=en&amp;fg=1" ping="/url?sa=t&amp;rct=j&amp;source=webhp&amp;url=https://policies.google.com/privacy%3Fhl%3Den%26fg%3D1&amp;ved=0ahUKEwjSjPzJ69D6AhWQBUQIHVrJBAUQ8awCCBI">
+            Privacy
+        </a>
+        <a class="personalInfo" href="https://policies.google.com/terms?hl=en&amp;fg=1" ping="/url?sa=t&amp;rct=j&amp;source=webhp&amp;url=https://policies.google.com/terms%3Fhl%3Den%26fg%3D1&amp;ved=0ahUKEwjSjPzJ69D6AhWQBUQIHVrJBAUQ8qwCCBM">
+            Terms
+        </a>
+        <a class="personalInfo" href="https://www.google.com/preferences?hl=en&amp;fg=1" role="menuitem" tabindex="-1">
+            Search settings
+        </a>
+        <a class="personalInfo" href="https://myactivity.google.com/product/search?utm_source=google&amp;hl=en&amp;fg=1" role="menuitem" tabindex="-1">
+            Search history
+        </a>
+    </div>
+</div>
+<!--script area-->
+<script src="../static/js/form.js"></script>
+<script>
+    /* Pagechange table display*/
+    /* Get the current pageitem*/
+pagenumber = document.querySelector('.main .pagechangetable td.hiddenpage span').getAttribute('pagenumber')
+pagenumber = parseInt(pagenumber);
+
+let regex = /(?<=&fn=)(?<num>[\d]+)$/;
+let pageNumber = regex.exec(location.search).groups.num;
+
+currentpageitem = document.querySelector(`.main .pagechangetable .pagebkg[google-page-icon='${pageNumber}']`);
+currentpageitem.nextElementSibling.style.color = '#4285F4';
+
+/* Setting the hrefs of the pagechangetables */
+pagechanges = document.querySelectorAll('.main .pagechangetable td.page')
+
+let index = 0;
+for (let pagechange of pagechanges){
+    index += 1;
+    let s = location.pathname + location.search.replace(regex, String(index))
+    pagechange.firstElementChild.setAttribute('href', s);
+    
+}
+currentpageitem.parentElement.onclick = function(event){
+    return stopDefault(event);
+};
+/* Next page change*/
+pagenextitem = document.querySelector('.main .pagechangetable .pagebkg[google-page-icon="e"]');
+let s = location.pathname + location.search.replace(regex, String(parseInt(pageNumber)+1))
+if (parseInt(pageNumber) == pagenumber){
+    s = location.pathname + location.search.replace(regex, String(1))
+}
+pagenextitem.parentElement.setAttribute('href', s)
+
+/* The color change of the pagecangetable*/
+for(let pagenode of document.querySelectorAll('.main .pagechangetable .pagebkg~.pagenumber')){
+    pagenode.style.color = 'black';
+    if (parseInt(pagenode.innerText) == pageNumber){
+        pagenode.style.color = '#1E90FF';
+    }
+}
+
+/* stop Default event */
+function stopDefault(event){
+    if (event && event.preventDefault){
+        event.preventDefault;
+    }
+    return false;
+}
+    
+    </script>
+
+{% endblock %}

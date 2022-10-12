@@ -1,0 +1,419 @@
+{% extends "base.html" %}
+
+{% block title%}
+How to fix it
+{% endblock %}
+
+{% block stylesheet%}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/news.css') }}">
+{% endblock %}
+
+{% block header%}
+<div class="searchBox" style="display:flex;justify-content:flex-start;align-items: center;">
+    <div class="logo">
+        <a href="https://www.google.com/webhp?hl=en&amp;sa=X&amp;ved=0ahUKEwjSyur2zs36AhVLLUQIHaeHBVAQPAgI" title="Go to Google Home" id="logo">
+            <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" style="background:none" alt="Google" height="30" width="92">
+    
+        </a>
+    </div>
+    <div class="queryBox">
+        <form class="searchForm" action="/search" id="tsf" data-submitfalse="q" method="GET" name="f" role="search"> 
+            <div class="searchPart">
+                <div class="before-half-radius"></div>
+                <div class="submitbutton"> 
+                    <button class="submitButton" type="submit" > 
+                        <div class="submitButton">
+                            <span class="submitButton">
+                            <svg focusable="false"class="searchBox" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                                </path>
+                            </svg>
+                            </span>
+                        </div>
+                    </button> 
+                </div>
+                <div class="searchInput">
+                    <input class="searchQuery" maxlength="2048" name="q" type="text" autocapitalize="off" autocomplete="on" autocorrect="on" role="combobox" spellcheck="false" value="" placeholder="Google" >
+                    <input class="hiddenpage" name="fn" value="1" type="hidden">
+                </div>
+                <div class="backslash"> 
+                    <div role="button" tabindex="1">
+                        <span class="ExCKkf z1asCe rzyADb">
+                            <svg focusable="false" class="searchBox" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+                                </path>
+                            </svg>
+                        </span> 
+                    </div>
+                </div>
+                <div class="speaker"> 
+                    <div role="button" class="speaker" tabindex="0">
+                        <svg class="searchBox" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="#4285f4" d="m12 15c1.66 0 3-1.31 3-2.97v-7.02c0-1.66-1.34-3.01-3-3.01s-3 1.34-3 3.01v7.02c0 1.66 1.34 2.97 3 2.97z">
+                            </path>
+                            <path fill="#34a853" d="m11 18.08h2v3.92h-2z">
+                            </path>
+                            <path fill="#fbbc05" d="m7.05 16.87c-1.27-1.33-2.05-2.83-2.05-4.87h2c0 1.45 0.56 2.42 1.47 3.38v0.32l-1.15 1.18z">
+                            </path>
+                            <path fill="#ea4335" d="m12 16.93a4.97 5.25 0 0 1 -3.54 -1.55l-1.41 1.49c1.26 1.34 3.02 2.13 4.95 2.13 3.87 0 6.99-2.92 6.99-7h-1.99c0 2.92-2.24 4.93-5 4.93z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="rear-half-radius"></div> 
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block nav%}
+<div>
+    <div class="NavigationBar">
+    <div class="Navigationitem">
+        <span class="Navigation">
+            <span class="Navigationitem">
+                Finance
+            </span>
+            <div class="Navigationhidden">
+                <span class="Navigationitem" data-visible="hidden">
+                    <a href="http://www.baidu.com">
+                        <span class="Navigationitem">
+                        </span>Finance
+                    </a>
+                </span>
+                <span class="Navigationitem" data-visible="hidden">
+                    <a href="http://www.baidu.com">
+                        <span class="Navigationitem">
+                        </span>Finance
+                    </a>
+                </span>
+                <span class="Navigationitem" data-visible="hidden">
+                    <a href="http://www.baidu.com">
+                        <span class="Navigationitem">
+                        </span>Finance
+                    </a>
+                </span>
+            </div>
+        </span>
+    </div>
+    <div class="Navigationitem">
+        <span class="Navigation">
+            <a href="http://www.baidu.com" data-hveid="CAIQAw" style="color:black;"> 
+                <span class="Navigationitem">
+                    Sport
+                </span>
+            </a>
+            <div class="Navigationhidden">
+                <span class="Navigationitem" data-visible="hidden">
+                    <a href="http://www.baidu.com">
+                        <span class="Navigationitem">
+                        </span>Finance
+                    </a>
+                </span>
+                <span class="Navigationitem" data-visible="hidden">
+                    <a href="http://www.baidu.com">
+                        <span class="Navigationitem">
+                        </span>Finance
+                    </a>
+                </span>
+                <span class="Navigationitem" data-visible="hidden">
+                    <a href="http://www.baidu.com">
+                        <span class="Navigationitem">
+                        </span>Finance
+                    </a>
+                </span>
+            </div>
+        </span>
+        
+    </div>
+    <div class="Navigationitem">
+        <span class="Navigation">
+            <a href="http://www.baidu.com" data-hveid="CAIQAw" style="color:black;"> 
+                <span class="Navigationitem">
+                    Politic
+                </span>
+            </a>
+            <div class="Navigationhidden">
+                <span class="Navigationitem" data-visible="hidden">
+                    <a href="http://www.baidu.com">
+                        <span class="Navigationitem">
+                        </span>Finance
+                    </a>
+                </span>
+                <span class="Navigationitem" data-visible="hidden">
+                    <a href="http://www.baidu.com">
+                        <span class="Navigationitem">
+                        </span>Finance
+                    </a>
+                </span>
+                <span class="Navigationitem" data-visible="hidden">
+                    <a href="http://www.baidu.com">
+                        <span class="Navigationitem">
+                        </span>Finance
+                    </a>
+                </span>
+            </div>
+        </span>
+        
+    </div>
+    <div class="Navigationitem">
+        <span class="Navigation">
+            <a href="http://www.baidu.com" data-hveid="CAIQAw" style="color:black;"> 
+                <span class="Navigationitem">
+                    Tech
+                </span>
+            </a>
+            <div class="Navigationhidden">
+                <span class="Navigationitem" data-visible="hidden">
+                    <a href="http://www.baidu.com">
+                        <span class="Navigationitem">
+                        </span>Finance
+                    </a>
+                </span>
+                <span class="Navigationitem" data-visible="hidden">
+                    <a href="http://www.baidu.com">
+                        <span class="Navigationitem">
+                        </span>Finance
+                    </a>
+                </span>
+                <span class="Navigationitem" data-visible="hidden">
+                    <a href="http://www.baidu.com">
+                        <span class="Navigationitem">
+                        </span>Finance
+                    </a>
+                </span>
+            </div>
+        </span>
+        
+    </div>
+    <div class="Navigationitem">
+        <span class="Navigation">
+            <a href="http://www.baidu.com" data-hveid="CAIQAw" style="color:black;"> 
+                <span class="Navigationitem">
+                    World
+                </span>
+            </a>
+            <div class="Navigationhidden">
+                <span class="Navigationitem" data-visible="hidden">
+                    <a href="http://www.baidu.com">
+                        <span class="Navigationitem">
+                        </span>Finance
+                    </a>
+                </span>
+                <span class="Navigationitem" data-visible="hidden">
+                    <a href="http://www.baidu.com">
+                        <span class="Navigationitem">
+                        </span>Finance
+                    </a>
+                </span>
+                <span class="Navigationitem" data-visible="hidden">
+                    <a href="http://www.baidu.com">
+                        <span class="Navigationitem">
+                        </span>Finance
+                    </a>
+                </span>
+            </div>
+        </span>
+        
+    </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block article%}
+
+<div class="searchResultgeneral">
+    {% for i in range(lennewsContent[0], lennewsContent[1]) %}
+    {% if newsContent['website URLtitle'][i] %}
+    <div class="searchResult">
+        <div class="websitesetting">
+            <button type="button" class="websitesettingbutton">
+                <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <div class="searchResultformat" lang="en">
+            <div class="URL">
+                <a href={{newsContent['News Href'][i]}} >
+                    <div class="URLtitle">
+                        <img src = {{newsContent['website icon imgsrc'][i]}}>
+                        <a href={{newsContent['website href'][i]}} target="_blank" style="text-decoration:none;color: black;">
+                            <span class = "URLTITLE" >{{newsContent['website URLtitle'][i]}}</span>
+                        </a> 
+                    </div>
+                    <div class="URLInfo">
+                        <span class="URLInfo" role="text">{{newsContent['News Title'][i]}}</span>
+                    </div>
+                </a>
+            </div>
+            <div class="contentgeneral">
+                
+                <div class="contentframe">
+                    <div class="content" data-content="1">
+                        <div class="mainContent">
+                            <span>{{newsContent['News Content'][i]}}</span>
+                        </div>
+                    </div>
+                    <div class="content" data-content="2" style="margin-top:5px;margin-bottom:5px">
+                        <div class="contentMore">
+                            <div class="contentMore" data-index="2">
+                                <span class="YrbPuc WGKbId BBwThe">{{newsContent['News Additional information'][i]}}</span>
+                                <span class="wHYlTd z8gr9e">
+                                    <a href="#" ></a>
+                                    <a href="#"></a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="updatedate">
+                        <span class="updateinfo"> 2 days ago</span>
+                    </div>
+                </div>
+                <div class="contentPic" data-content="0">
+                    <img src={{newsContent["News imgSrc"][i]}} alt={{newsContent["News imgSrc"][i]}}>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="article_hr_dotted"></div>
+    {% endif %}
+    {% endfor %}
+</div>
+<div class="article_hr_dotted"></div>
+<div role="pagechange">
+    <table class="pagechangetable">
+        <tbody align="center">
+            <tr valign="tops">
+                <td class="hiddenpage">
+                    <span class="pagebkg" google-page-icon="0" pagenumber={{lenpagechangetable}}>
+                     </span>
+                </td>
+                {% for i  in range(0, lenpagechangetable)%}
+                <td class="page">
+                    <a class="page" href="">
+                        <span class="pagebkg" google-page-icon={{i+1}}>
+                        </span>
+                        <span class="pagenumber">{{i+1}}</span>
+                    </a>
+                </td>
+                {% endfor %}
+                <td>
+                    <a href="/search?q=google&amp;ei=k4w_Y67xIK3WkPIP3ZCrmAw&amp;start=10&amp;sa=N&amp;ved=2ahUKEwjuhpn2hs36AhUtK0QIHV3ICsMQ8NMDegQIARAK" id="pnnext" style="text-align:left">
+                        <span class="pagebkg" google-page-icon="g">
+                        </span>
+                    </a>
+                </td>
+                <td>
+                    <a class="page" href="/search?q=google&amp;ei=k4w_Y67xIK3WkPIP3ZCrmAw&amp;start=30&amp;sa=N&amp;ved=2ahUKEwjuhpn2hs36AhUtK0QIHV3ICsMQ8tMDegQIARAI">
+                        <span class="pagebkg" google-page-icon="l">
+                        </span>
+                    </a>
+                </td>
+                <td class="pagenext" role="heading">
+                    <a href="" id="pnnext" style="text-align:left">
+                        <span class="pagebkg" google-page-icon="e">
+                        </span>
+                        <span class="pagenumber" style="position: relative;left:3px;">Next</span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="division" style="padding-top:30px">
+</div>
+<div class="article_hr_dotted"></div>
+{% endblock %}
+
+
+{% block footer%}
+<div class="footercontainer">
+    <div class="environmentBar">
+        <a class="environmentInfo" href="https://sustainability.google/carbon-free/?utm_source=googlehpfooter&amp;utm_medium=housepromos&amp;utm_campaign=bottom-footer&amp;utm_content=" ping="/url?sa=t&amp;rct=j&amp;source=webhp&amp;url=https://sustainability.google/carbon-free/%3Futm_source%3Dgooglehpfooter%26utm_medium%3Dhousepromos%26utm_campaign%3Dbottom-footer%26utm_content%3D&amp;ved=0ahUKEwjSjPzJ69D6AhWQBUQIHVrJBAUQiM8HCBE">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAYCAMAAAAiV0Z6AAAAPFBMVEVLoEN0wU6CzFKCzFKCzFKCzFKCzFJSo0MSczNDmkCCzFJPoUMTczNdr0gmgziCzFITczMTczMTczMTczPh00jOAAAAFHRSTlPF/+bIsms8Ad///hX+//5/tXw7aMEAx10AAACaSURBVHgBbc4HDoRQCATQ33tbvf9dF9QxaCT9UQaltLHOh/golXKhMs5Xqa0xU1lyoa2fXFyQOsDG38qsLy4TaV+sFislovyhPzLJJrBu6eQOtpW0LjbJkzTuTDLRVNKa3uxJI+VdiRqXSeu6GW+Qxi29eLIi8H7EsYrT42BD+mQtNO5JMjRuC4lSY8V4hsLX0egGijvUSEP9AbylEsOkeCgWAAAAAElFTkSuQmCC" class="Pb9hCb" alt="" data-atf="1" data-frt="0">
+            Carbon neutral since 2007
+        </a>
+    </div>
+    <div class="aboutInfobar">
+        <a class="aboutInfo" href="https://www.google.com/intl/en_us/ads/?subid=ww-ww-et-g-awa-a-g_hpafoot1_1!o2&amp;utm_source=google.com&amp;utm_medium=referral&amp;utm_campaign=google_hpafooter&amp;fg=1">
+            Advertising
+        </a>
+        <a class="aboutInfo" href="https://www.google.com/services/?subid=ww-ww-et-g-awa-a-g_hpbfoot1_1!o2&amp;utm_source=google.com&amp;utm_medium=referral&amp;utm_campaign=google_hpbfooter&amp;fg=1">
+            Business
+        </a>
+        <a class="aboutInfo" href="https://google.com/search/howsearchworks/?fg=1">
+            How Search works 
+        </a>
+    </div>
+    <div class="personalInfoBar">
+        <a class="personalInfo" href="https://policies.google.com/privacy?hl=en&amp;fg=1" ping="/url?sa=t&amp;rct=j&amp;source=webhp&amp;url=https://policies.google.com/privacy%3Fhl%3Den%26fg%3D1&amp;ved=0ahUKEwjSjPzJ69D6AhWQBUQIHVrJBAUQ8awCCBI">
+            Privacy
+        </a>
+        <a class="personalInfo" href="https://policies.google.com/terms?hl=en&amp;fg=1" ping="/url?sa=t&amp;rct=j&amp;source=webhp&amp;url=https://policies.google.com/terms%3Fhl%3Den%26fg%3D1&amp;ved=0ahUKEwjSjPzJ69D6AhWQBUQIHVrJBAUQ8qwCCBM">
+            Terms
+        </a>
+        <a class="personalInfo" href="https://www.google.com/preferences?hl=en&amp;fg=1" role="menuitem" tabindex="-1">
+            Search settings
+        </a>
+        <a class="personalInfo" href="https://myactivity.google.com/product/search?utm_source=google&amp;hl=en&amp;fg=1" role="menuitem" tabindex="-1">
+            Search history
+        </a>
+    </div>
+</div>
+<!--script area-->
+<script src="../static/js/new.js"></script>
+<script>
+    /* Pagechange table display*/
+    /* Get the current pageitem*/
+pagenumber = document.querySelector('.main .pagechangetable td.hiddenpage span').getAttribute('pagenumber')
+pagenumber = parseInt(pagenumber);
+
+let regex = /(?<=fn=)(?<num>[\d]+)$/;
+let pageNumber = regex.exec(location.search).groups.num;
+
+currentpageitem = document.querySelector(`.main .pagechangetable .pagebkg[google-page-icon='${pageNumber}']`);
+currentpageitem.nextElementSibling.style.color = '#4285F4';
+
+/* Setting the hrefs of the pagechangetables */
+pagechanges = document.querySelectorAll('.main .pagechangetable td.page')
+
+let index = 0;
+for (let pagechange of pagechanges){
+    index += 1;
+    let s = location.pathname + location.search.replace(regex, String(index))
+    pagechange.firstElementChild.setAttribute('href', s);
+    
+}
+currentpageitem.parentElement.onclick = function(event){
+    console.log(currentpageitem);
+    return stopDefault(event);
+};
+/* Next page change*/
+pagenextitem = document.querySelector('.main .pagechangetable .pagebkg[google-page-icon="e"]');
+let s = location.pathname + location.search.replace(regex, String(parseInt(pageNumber)+1))
+if (parseInt(pageNumber) == pagenumber){
+    s = location.pathname + location.search.replace(regex, String(1))
+}
+pagenextitem.parentElement.setAttribute('href', s)
+
+/* The color change of the pagecangetable*/
+for(let pagenode of document.querySelectorAll('.main .pagechangetable .pagebkg~.pagenumber')){
+    pagenode.style.color = 'black';
+    if (parseInt(pagenode.innerText) == pageNumber){
+        pagenode.style.color = '#1E90FF';
+    }
+}
+
+/* stop Default event */
+function stopDefault(event){
+    if (event && event.preventDefault){
+        event.preventDefault;
+    }
+    return false;
+}
+    
+</script>
+{% endblock %}
