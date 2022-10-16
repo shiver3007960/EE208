@@ -1,0 +1,21 @@
+'http://www.bilibili.com,
+ 'http://migu.cn',
+   'http://zhihu.com'],
+    ['http://www.baidu.com'
+     ['https://www.bjnews.com.cn/'
+     , 'https://paper.xinmin.cn/']
+     http://www.youdao.com
+     , ['https://m.huanqiu.com/'
+     ,'https://www.xinhuashibao.cn/']
+     , ['http://zqb.cyol.com/html/2022-10/14/nbs.D110000zgqnb_01.htm'
+     ,'https://www.toutiao.com/'],
+      ['https://www.gmw.cn/',
+       'https://ep.ycwb.com/epaper/ycwb/html'
+       ], ['http://epaper.southcn.com/nfdaily/html'
+       , 'http://www.infzm.com/']
+       , ['https://www.yangtse.com/'
+       , 'https://www.dahe.cn/
+       https://baike.baidu.com/
+       https://www.douban.com/
+       https://ent.sina.com.cn/
+       https://ent.163.com/
