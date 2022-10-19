@@ -15,7 +15,7 @@ from org.apache.lucene.analysis.core import WhitespaceAnalyzer
 from org.apache.lucene.analysis.charfilter import HTMLStripCharFilter
 from org.apache.lucene.index import DirectoryReader, Term, IndexReader, IndexWriter, IndexWriterConfig, PostingsEnum, MultiFields
 from org.apache.lucene.queryparser.classic import QueryParser, MultiFieldQueryParser
-from org.apache.lucene.store import SimpleFSDirectory
+from org.apache.lucene.store import MMapDirectory
 from org.apache.lucene.search import IndexSearcher, TermQuery, WildcardQuery, FuzzyQuery, MultiPhraseQuery, PhraseQuery, BooleanQuery
 from org.apache.lucene.search import Query as luceneQuery
 from org.apache.lucene.search import BooleanClause
@@ -36,8 +36,8 @@ class Query:
         pass
 
     # Recieve a URL and store the content of the URL and return contentsGeneral to filter overlapping content
-    @staticmethod
-    def presentQuery(URL = None, storeDir = "URLdir", field = None, contentsGeneral = '', highlighter = None, analyzer = None):
+     @staticmethod
+    def presentQuery(URL = None, storeDir = "URLdir", field = None, contentsGeneral = '', highlighter = None, analyzer = WhitespaceAnalyzer()):
         
         formatter = '[^\s(&lt)(&gt)]'
         if isinstance(URL, str) and Query._vaildURL(URL)[1] is not None:
@@ -45,22 +45,19 @@ class Query:
                 URL = 'https:' + URL
             try:
                 content = standard_request(url=URL)
-                
-                if isinstance(content, bytes):
-                    content = content.decode()
-                else:
-                    return None
             except UnicodeDecodeError as error:
-                content = asyncio.run(asynCrawl(url = URL, params={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"}))
+                content = asyncio.run(asynCrawl(url = URL, params={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"}, bytesRequired = True))
             
-            if isinstance(content, str):
-                content = TextProcessing.clean_html(content)
-
-                # Get hightloighter fragment
+            if isinstance(content, bytes):
+                html = TextProcessing()
+                subpattern = '[^\u4e00-\u9fff\w]'
+                parseResult = html.parseHTML(content = content, baseURL = URL)
+                # Get hightlighter fragment
+                content = re.sub(subpattern, ' ', parseResult[3])
                 res = highlighter.getBestFragment(analyzer, field, content)
+                
                 if isinstance(res, str):
                     res = ''.join(map(lambda matchObj: matchObj.group(), re.finditer(formatter, res)))
-
                     # Avoiding common segments
                     matchmaxLen = TextProcessing._common(contentsGeneral, res)
                     if matchmaxLen / len(res) > 0.95:
@@ -351,7 +348,7 @@ class Query:
         if query == '':
             return
         # 索引目录
-        directory = SimpleFSDirectory(File(indexDir).toPath())
+        directory = MMapDirectory(File(indexDir).toPath())
         # 索引搜索工具
         indexReader = DirectoryReader.open(directory)
         searcher = IndexSearcher(DirectoryReader.open(directory))
@@ -378,7 +375,7 @@ class Query:
             doc = searcher.doc(scoreDoc.doc)
 
             URL = doc.get("URL")
-
+            print(URL)
             res = Query.presentQuery(URL, field=field, contentsGeneral = contentsGeneral, highlighter = highlighter, analyzer=analyzer)
             if res is not None:
                 title = doc.get("htmlTitle")
@@ -393,12 +390,13 @@ class Query:
 
 if __name__ == "__main__":
     INDEX_DIR = "URLinfo"
-    query = sys.argv[1]
-
+    #query = sys.argv[1]
+    query = "上海"
     if isinstance(query, str) and len(query) > 0:
         query = TextProcessing.TokenizeChinese(query)
         field = "Contents"
         #analyzer = StandardAnalyzer()
         analyzer = WhitespaceAnalyzer()
         res = QueryParser(field, analyzer).parse(query)
+        print(res)
         Query.run(INDEX_DIR, res, field)

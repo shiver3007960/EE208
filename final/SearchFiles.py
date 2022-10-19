@@ -19,7 +19,7 @@ from org.apache.lucene.analysis.charfilter import HTMLStripCharFilter
 from org.apache.lucene.index import DirectoryReader, Term, IndexReader, IndexWriter, IndexWriterConfig, PostingsEnum, MultiFields
 from org.apache.lucene.util.automaton import RegExp 
 from org.apache.lucene.queryparser.classic import QueryParser, MultiFieldQueryParser
-from org.apache.lucene.store import SimpleFSDirectory
+from org.apache.lucene.store import MMapDirectory
 from org.apache.lucene.search import IndexSearcher, TermQuery, WildcardQuery, FuzzyQuery, MultiPhraseQuery, PhraseQuery, BooleanQuery, RegexpQuery
 from org.apache.lucene.search import Query as luceneQuery
 from org.apache.lucene.search import BooleanClause
@@ -40,27 +40,70 @@ class Query:
 
     # Recieve a URL and store the content of the URL and return contentsGeneral to filter overlapping content
     @staticmethod
-    def presentQuery(URL = None, storeDir = "URLdir", field = None, contentsGeneral = '', highlighter = None, analyzer = None, doc = None):
+    def presentQuery(URL = None, storeDir = "URLdir", field = None, contentsGeneral = '', highlighter = None, analyzer = WhitespaceAnalyzer()):
         
-        # Get highlighter fragment
-        res = highlighter.getBestFragment(analyzer, field, doc.get(field))
-        if isinstance(res, str):
-            res = ''.join(map(lambda matchObj: matchObj.group(), re.finditer(formatter, res)))
+        formatter = '[^\s(&lt)(&gt)]'
+        if isinstance(URL, str) and Query._vaildURL(URL)[1] is not None:
+            if not URL.startswith('http'):
+                URL = 'https:' + URL
+            try:
+                content = standard_request(url=URL)
+            except UnicodeDecodeError as error:
+                content = asyncio.run(asynCrawl(url = URL, params={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"}, bytesRequired = True))
+            
+            if isinstance(content, bytes):
+                html = TextProcessing()
+                subpattern = '[^\u4e00-\u9fff\w]'
+                parseResult = html.parseHTML(content = content, baseURL = URL)
+                # Get hightlighter fragment
+                content = re.sub(subpattern, ' ', parseResult[3])
+                res = highlighter.getBestFragment(analyzer, field, content)
+                
+                if isinstance(res, str):
+                    res = ''.join(map(lambda matchObj: matchObj.group(), re.finditer(formatter, res)))
+                    # Avoiding common segments
+                    matchmaxLen = TextProcessing._common(contentsGeneral, res)
+                    if matchmaxLen / len(res) > 0.95:
+                        return None
+                    contentsGeneral += res
 
-            # Avoiding common segments
-            matchmaxLen = TextProcessing._common(contentsGeneral, res)
-            if matchmaxLen / len(res) > 0.95:
-                return None
-            contentsGeneral += res
+                    urlpath = '/' .join(filter(lambda netloc: netloc and re.match('[a-zA-Z0-9]', netloc) is not None, \
+                                    [parse.urlparse(URL).netloc.strip('/'), parse.urlparse(URL).path.strip('/'), parse.urlparse(URL).params.strip('/'),  parse.urlparse(URL).query.strip('/')]))
+    
+                    if not path.exists("%s/"%storeDir + urlpath):
+                        makedirs("%s/"%storeDir + urlpath)
+                        with open("%s/%s/content.txt"%(storeDir, urlpath), 'w+') as file:
+                            file.write(content)
+                    return (res, "%s/%s/content.txt"%(storeDir, urlpath), contentsGeneral)
 
-            urlpath = '/' .join(filter(lambda netloc: netloc and re.match('[a-zA-Z0-9]', netloc) is not None, \
-                            [parse.urlparse(URL).netloc.strip('/'), parse.urlparse(URL).path.strip('/'), parse.urlparse(URL).params.strip('/'),  parse.urlparse(URL).query.strip('/')]))
-
-            if not path.exists("%s/"%storeDir + urlpath):
-                makedirs("%s/"%storeDir + urlpath)
-                with open("%s/%s/content.txt"%(storeDir, urlpath), 'w+') as file:
-                    file.write(doc.get(field))
-            return (res, "%s/%s/content.txt"%(storeDir, urlpath), contentsGeneral)
+    @staticmethod
+    def presentPic(URL = None, storeDir = "URLdir", field = None, contentsGeneral = '', highlighter = None, analyzer = WhitespaceAnalyzer(), doc = None):
+        formatter = '[^\s(&lt)(&gt)]'
+        if isinstance(URL, str) and Query._vaildURL(URL)[1] is not None:
+            if not URL.startswith('http'):
+                URL = 'https:' + URL
+            try:
+                content = standard_request(url=URL)
+            except UnicodeDecodeError as error:
+                content = asyncio.run(asynCrawl(url = URL, params={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"}, bytesRequired = True))
+            
+            if isinstance(content, bytes):
+                html = TextProcessing()
+                subpattern = '[^\u4e00-\u9fff\w]'
+                parseResult = html.parseHTML(content = content, baseURL = URL)
+                # Get hightlighter fragment
+                content = ' '.join(map(lambda key: key + ' ' + ' '.join(parseResult[5][key]) if isinstance(parseResult[5][key][0], str) and len(parseResult[5][key][0]) > 1 else '', parseResult[5].keys()))
+                
+                res = highlighter.getBestFragment(analyzer, field, doc.get(field))
+                
+                if isinstance(res, str):
+                    res = ''.join(map(lambda matchObj: matchObj.group(), re.finditer(formatter, res)))
+                    # Avoiding common segments
+                    matchmaxLen = TextProcessing._common(contentsGeneral, res)
+                    """ if matchmaxLen / len(res) > 0.95:
+                        return None """
+                    contentsGeneral += res
+                    return (res, contentsGeneral)
 
        
     @staticmethod
@@ -333,7 +376,7 @@ class Query:
         if query == '':
             return
         # 索引目录
-        directory = SimpleFSDirectory(File(indexDir).toPath())
+        directory = MMapDirectory(File(indexDir).toPath())
         # 索引搜索工具
         indexReader = DirectoryReader.open(directory)
         searcher = IndexSearcher(DirectoryReader.open(directory))
@@ -357,12 +400,15 @@ class Query:
 
             URL = doc.get("URL")
             print(URL)
-            res = Query.presentQuery(URL, field=field, contentsGeneral = contentsGeneral, highlighter = highlighter, analyzer=analyzer, doc = doc)
+            print(doc.get("Images"))
+            #res = Query.presentQuery(URL, field=field, contentsGeneral = contentsGeneral, highlighter = highlighter, analyzer=analyzer)
+            res = Query.presentPic(URL, field=field, contentsGeneral = contentsGeneral, highlighter = highlighter, analyzer=analyzer, doc = doc)
             if res is not None:
+                
                 title = doc.get("htmlTitle")
                 title = re.sub(formatter, '', title)
-                content, filepath, contentsGeneral = res[0], res[1], res[2]
-                print("Title:%s \n path :%s \ncontent :%s \n url:%s\n"%(title, filepath, content, URL))
+                contentsGeneral = res[1]
+                print("Title:%s \n url :%s \n"%(title, res[0]))
                 hit += 1
                 #print ('Contents:', doc.get("Contents"), 'score:', scoreDoc.score)
         print ("%s total matching documents." %hit)
@@ -374,7 +420,7 @@ class luceneUtils:
     STOER_DIR = ''
     def __init__(self, STORE_DIR) -> None:
         # 索引目录
-        directory = SimpleFSDirectory(File(STORE_DIR).toPath())
+        directory = MMapDirectory(File(STORE_DIR).toPath())
         # 索引搜索工具
         self.indexReader = DirectoryReader.open(directory)
         luceneUtils.STOER_DIR = STORE_DIR
@@ -431,7 +477,7 @@ class luceneUtils:
 if __name__ == "__main__":
 
     
-    INDEX_DIR = "URLinfo"
+    INDEX_DIR = "URLinfo1"
     """ query = TermQuery(Term("Images", "三角恋"))
     htmlFormatter = SimpleHTMLFormatter("<em>", "<em>")
     queryScorer = QueryScorer(query)
@@ -440,23 +486,23 @@ if __name__ == "__main__":
     highlighter.setTextFragmenter(fragmenter) """
     
     
-    luceneutils = luceneUtils("URLinfo")
-    luceneutils.getTerms(5, "Images")
-    exit()
+    """ luceneutils = luceneUtils("URLinfo")
+    luceneutils.getTerms(30, "Images") """
+    
     #analyzer = StandardAnalyzer()
-    analyzer = WhitespaceAnalyzer()
+    analyzer = StandardAnalyzer()
     #res = QueryParser("Contents", analyzer).parse("上海")
     query = "鞠婧祎"
-    field = "Contents"
+    field = "Images"
 
     """ query = TextProcessing.TokenizeChinese(query) """
-
-    res = QueryParser(field, analyzer).parse("漕河泾")
-    res = TermQuery(Term("Contents", "中共中央"))
+   
+    res = QueryParser(field, analyzer).parse("用户")
+    res = TermQuery(Term("Images", "法律责任"))
     print(res)
     #res = Query.parseQuery(query, analyzer = WhitespaceAnalyzer())
     #print(res.clauses())
-    Query.run(INDEX_DIR, res, field)
+    Query.run(INDEX_DIR, res, "Images")
 '''
 
 postingsEnum.nextDoc()

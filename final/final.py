@@ -16,13 +16,10 @@ from TextProcessor import TextProcessing
 
 from queue import Queue
 from threading import Thread, Lock
-from time import sleep
-from math import ceil, log2
-from functools import reduce
-from os import makedirs
+from math import ceil
 from func_timeout import func_set_timeout
 import func_timeout
-from sys import exit
+
 
 
 def _parse(IndexingPool, URLPool, content):
@@ -35,13 +32,7 @@ def _parse(IndexingPool, URLPool, content):
     if isinstance(parseResult, list) and len(parseResult[4]) > 1 and isinstance(parseResult[4][0], set):
         processLinks = list(map(lambda element: URLPool.put(element) if isValidURL(element) else None, parseResult[4][0]))
         IndexingPool.put(parseResult)
-        with open('data.txt', 'a+') as file:
-            if parseResult is not None:
-                try:
-                    file.write(str(parseResult))
-                except Exception as error:
-                    pass
-        print("Consuming website is  %s "%(content[0]))
+        #print("Consuming website is  %s "%(content[0]))
 
 
 def crawl(URLPool, ContentsPool, crawled, IndexingPool, timeout = 3600 * 10):
@@ -75,15 +66,15 @@ def indexHTML(IndexingPool, IndexingPoolLock, VM = None, indexWriter = None, tim
         while True:
             with IndexingPoolLock:
                 parseResult = IndexingPool.get()
+            VM.attachCurrentThread()
             Indexer.indexURL(parseResult, indexWriter, VM = VM)
             with open('data.txt', 'a+') as file:
                 if parseResult is not None:
                     try:
-                        file.writelines(str(parseResult))
                         file.write('\n')
                     except Exception as error:
                         print("The fucking I/O error occurs %s"%str(error))
-            print("*****Indexing website****** is  %s "%(parseResult[0]))
+            print("Indexing %s "%(parseResult[0]))
     try:
         _index()
     except func_timeout.exceptions.FunctionTimedOut as error:
@@ -102,7 +93,7 @@ def _init(seedList = None, VM = None, indexwriter = None, STORE_DIR = "URLinfo",
     VM.attachCurrentThread()
 
     if indexwriter is None:
-        indexWriter = Indexer.getIndexWriter(STORE_DIR)
+        indexWriter = Indexer.getIndexWriter(STORE_DIR, VM = VM)
     else:
         indexWriter = indexwriter
 
@@ -131,7 +122,7 @@ def readSeedList(filename = 'seedList.txt'):
         line = TextProcessing._vaildURL(element)
         return None if line[1] is None else line[1]
 
-    with open('seedList.txt') as file:
+    with open('seedList/paper2.txt') as file:
         line = list(filter(lambda element: element is not None and element.startswith('http'), map(_read, file.readlines())))
         return line
 
@@ -139,7 +130,7 @@ def readSeedList(filename = 'seedList.txt'):
 seedList = readSeedList(filename = "seedList.txt")
 
 initThread = list()
-indexWriter = Indexer.getIndexWriter(storeDir="URLinfo")
+indexWriter = Indexer.getIndexWriter(storeDir="URLinfo", VM = VM)
 for index in range(ceil(len(seedList) / 2)):
 
     thread = Thread(name = "main_scrapy", target=_init, args=[seedList[2*index:2*index+2], VM, indexWriter, None])

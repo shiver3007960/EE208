@@ -16,7 +16,7 @@ from json import loads
 
 class TextProcessing():
 
-    with open(r'stopwords/cn_stopwords.txt', 'r') as file:
+    with open(r'cn_stopwords.txt', 'r') as file:
         stopwords = set(map(lambda string: string.strip(), file.readlines()))
         stopwords = stopwords
 
@@ -104,6 +104,10 @@ class TextProcessing():
                 return ' '
             except ValueError as e:
                 return ' '
+            except ZeroDivisionError as e:
+                return ' '
+            except Exception as e:
+                return ' '
             res = content[last_tokenized:matchObj.span()[0]].strip() + tokenized
             last_tokenized = matchObj.span()[1]
             return res
@@ -134,6 +138,10 @@ class TextProcessing():
             return ' '
         except ValueError as e:
             return ' '
+        except ZeroDivisionError as e:
+            return ' '
+        except Exception as e:
+            return ' '
         return res
 
     def Tokenize(self, content):
@@ -160,6 +168,7 @@ class TextProcessing():
                 print(temp.encode('utf-8').decode('unicode_escape'))
             else:
                 print(page)
+    
     
     # (stored_directory_path, HTMLDocTitle, URL, Content, Links, Images)
     def parseHTML(self, content = '', baseURL = ''):
@@ -518,93 +527,6 @@ class TextProcessing():
             scope += 1
         
         return TextProcessing._processInfo(info_Weight)
-        
-content = '''<span class="title">
-新华全媒+丨牺牲77年，“无名烈士”被找回姓名
-</span>
-<span class="btn-audio"></span>
-</h1>
-<audio class="hide" id="audioDom" src="" loop></audio>
-<div class="pageShare">
-<div class="setFont">字体：
-<span id="fontSmall">小</span>
-<span id="fontNormal" class="active">中</span>
-<span id="fontBig">大</span>
-</div>
-<div class="share">
-分享到：<a href="javascript:void(0)" class="wx"></a><a href="javascript:void(0)" class="wb"></a><a href="javascript:void(0)" class="xcx"></a><a href="javascript:void(0)" class="khd"></a>
-<div class="wx-ewm"><img /></div>
-<div class="xcx-ewm"><img /></div>
-<div class="khd-ewm"><img src="http://www.xinhuanet.com/politics/newpage2020/images/qrcode-app.png" /></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="mheader domMobile">
-<h1>
-<span class="title">
-新华全媒+丨牺牲77年，“无名烈士”被找回姓名
-</span>
-</h1>
-<div class="info">
-2022-09-29 16:09:32
-<span>
-来源：
-新华网
-</span>
-</div>
-</div>
-<div class="main clearfix">
-<div class="main-left">
-<div id="detail">
-<p>　　新华社杭州9月29日电（记者王俊禄、林光耀）刚获评全国“人民满意的公务员”不久的浙江基层民警柯伟力，日前又通过DNA比对，为77年前牺牲的无名烈士确认身份、找回姓名。</p>
-<p>　　故事要从今年夏天说起。6月30日，浙江省台州市路桥区退役军人事务局接到一份协助函，来函单位是南京市高淳区退役军人事务局。</p>
-<p>　　函中称，1945年8月，两名新四军战士在东坝战役的游子山战斗期间牺牲，后葬于高淳，请求台州市路桥区退役军人事务局协调台州市公安局路桥分局“团圆工作室”提供技术支持，帮助查找两名先烈的姓名、籍贯及后人信息等。</p>
-<p>　　“团圆工作室”负责人柯伟力，是名法医，同时也担任台州市公安局路桥分局刑事科学技术室副主任。2021年以来，柯伟力领衔的“团圆工作室”，利用DNA比对等技术手段，已经为两百多名全国各地的寻亲者找到了家人。</p>
-<p style="TEXT-ALIGN: center"><img id="{55B7CBB2-7ACF-41F9-936A-2B21F33F77DA}" style="MAX-WIDTH: 100%; MARGIN-LEFT: auto; DISPLAY: block; MARGIN-RIGHT: auto" src="1129041895_16644386878651n.jpg" /></p>
-<p style="TEXT-ALIGN: center"><span style="COLOR: rgb(51,127,229)"><font color="navy" face="楷体">图为柯伟力。（受访者供图）</font></span></p>
-<p>　　“烈士牺牲已经有77年，我们也是第一次碰到年代如此久远的物证，这是一个很大挑战。”任务很艰巨，但也很光荣，柯伟力决定接下这个工作。</p>
-<p>　　关于烈士的有效信息很少。“我们只有烈士遗骸，在南京市高淳区寻访时了解到，村里有老人还记得，早年间，其中一个烈士墓上有毛竹片做的简单墓碑，碑上用红漆写了‘山东人刘金山’六个字，除此再无其他信息。”柯伟力说。<br /></p>
-<p>　　有限的信息给寻找工作带来了很大的困难。为了帮烈士找到家人，柯伟力和团队拼尽全力。“台州市公安局DNA实验室成立了专门检验团队，负责烈士遗骸的检验鉴定和比对工作，采用多种技术手段，最大限度保证了提取质量，最终检验出烈士完整的DNA分型。”柯伟力说。</p>
-<p>　　根据烈士DNA数据在数据库中的比对和后期研判，这位烈士极有可能来自山东枣庄刘氏家族。山东、刘氏——仅有的线索和DNA检验结果指向了同一个地方，这是个好消息。但能否找到烈士的家人，一切还是未知。</p>
-<p style="TEXT-ALIGN: center"><img id="{0C668735-D306-4829-BE08-1AB95A2EF957}" style="MAX-WIDTH: 100%; MARGIN-LEFT: auto; DISPLAY: block; MARGIN-RIGHT: auto" src="1129041895_16644386878661n.jpg" /></p>
-<p style="TEXT-ALIGN: center"><span style="COLOR: rgb(51,127,229)"><font color="navy" face="楷体">图为柯伟力在实验室开展鉴定工作。（受访者供图）</font></span></p>
-<p>　　9月7日上午，台州市公安局路桥分局门口，柯伟力脚步匆匆，怀揣着一份“带英雄回家”的任务赶赴山东枣庄，为1945年牺牲在南京的新四军烈士寻找家人。</p>
-<p>　　顺着前期的DNA比对结果，柯伟力找到了DNA数据库中比对结果最为接近的刘继军、刘继宝堂兄弟二人，并找到了刘继军已是耄耋之年的父亲刘金山（与烈士刘金山同名），和刘继军年届古稀的叔叔刘金岭。</p>
-<p style="TEXT-ALIGN: center"><img id="{0664F9BD-06E3-42F4-A7B9-4C87CAF2F97C}" style="MAX-WIDTH: 100%; MARGIN-LEFT: auto; DISPLAY: block; MARGIN-RIGHT: auto" src="1129041895_16644386878621n.jpg" /></p>
-<p style="TEXT-ALIGN: center"><span style="COLOR: rgb(51,127,229)"><font color="navy" face="楷体">图为柯伟力在给刘金山采集血样，用于比对DNA。（受访者供图）</font></span></p>
-<p>　　谈话中，两位老人都还记得：1956年前后，他们定居南京的二伯刘毓喜曾返回山东探亲，提到过自己的两个儿子，其中大儿子在南京做生意，二儿子在抗战中加入了共产党的队伍。刘毓喜曾到部队探望过二儿子，之后与二儿子失去了联系。</p>
-<p style="TEXT-ALIGN: center"><img id="{DC543F84-41A4-487F-9B52-FCB54FC237EF}" style="MAX-WIDTH: 100%; MARGIN-LEFT: auto; DISPLAY: block; MARGIN-RIGHT: auto" src="1129041895_16644386878631n.jpg" /></p>
-<p style="TEXT-ALIGN: center"><span style="COLOR: rgb(51,127,229)"><font color="navy" face="楷体">图为刘金山（前排右）在给柯伟力讲述家族史。（受访者供图）</font></span></p>
-<p>　　后来刘毓喜回到了南京，也逐渐和大家族断了联系。2000年前后修族谱的时候，刘氏后人曾到访南京，希望警方帮忙查找这一支后人，无奈时过境迁、物是人非，查找未果。</p>
-<p>　　同时，在刘氏族谱中，柯伟力也发现了烈士刘金山的名字，就写在刘毓喜之下。</p>
-<p style="TEXT-ALIGN: center"><span style="COLOR: rgb(51,127,229)"><img id="{7F0E9944-F3DE-4768-AD2B-FD2DA45877A0}" style="MAX-WIDTH: 100%; MARGIN-LEFT: auto; DISPLAY: block; MARGIN-RIGHT: auto" src="1129041895_16644386878641n.jpg" /></span></p>
-<p style="TEXT-ALIGN: center"><span style="COLOR: rgb(51,127,229)"><font color="navy" face="楷体">图为刘氏族谱，其中红框部分为1945年牺牲的烈士刘金山，由于该支长期失联，且族中老人记忆模糊，在修族谱时，以刘金岭之名入谱。（受访者供图）</font></span></p>
-<p>　　DNA是不会说话的证人。比对结果显示，“烈士刘金山”遗骸检出的基因型与刘金山、刘金岭兄弟二人全部匹配。</p>
-<p>　　结合现场走访收获的信息，柯伟力和同事经过综合分析，得出最后的结论：“烈士刘金山”遗骸与刘金山、刘金岭同属一个家族，无名烈士“山东人刘金山”，就是籍贯山东省枣庄市市中区永安镇寨子村刘氏家族的刘毓喜之子刘金山。</p>
-<p style="TEXT-ALIGN: center"><img id="{680FED23-BEBB-446F-B1A8-11295D8D5869}" style="MAX-WIDTH: 100%; MARGIN-LEFT: auto; DISPLAY: block; MARGIN-RIGHT: auto" src="1129041895_16644386878671n.jpg" /></p>
-<p style="TEXT-ALIGN: center"><span style="COLOR: rgb(51,127,229)"><font color="navy" face="楷体">图为柯伟力在抄录刘氏族谱。（受访者供图）</font></span></p>
-<p>　　“这么多年了，我们一直没有放弃寻找这一支脉的亲人，柯警官带来的消息让我们激动又欣慰，这场跨越3个省份的联合寻找也圆了家族的寻亲夙愿。”曾主持重修族谱的刘凯万分感慨、万分感谢。</p>
-<p>　　心里的一块石头落地，柯伟力也觉得对烈士有了交代。“既然烈士留下了身世的线索，我们就不能让他继续无名下去，要把无名烈士墓变成有名有姓的墓，供后人祭奠。”柯伟力说。</p>
-<p>　　寻找还在继续。另一名据称来自四川的烈士，由于时间久远，其遗骸在烈士墓中受到了损坏，需要花费更多的精力去破解其中的“身世秘密”，柯伟力的团队也一直在努力。</p>
-<p>　　“留在数据库里的DNA，就像一颗种子，终有一天会开花结果。”柯伟力说，他将带领“团圆工作室”，让更多失散、破碎的家庭实现“圆满”。</p>
-<p>　　为刘金山烈士寻亲的故事，是全国烈士寻亲工作的一个缩影。对于这项工作，全国各地、各部门一直念兹在兹。2021年起，退役军人事务部将烈士寻亲工作列入“我为群众办实事”实践活动清单，探索建立烈士寻亲合作机制。</p>
-<div id="articleEdit">
-<span class="tiyi1 domPC">
-<a href="javascript:void(0);" class="advise">【纠错】</a>
-<div class="tiyi01" id="advisebox01" style="display:none">
-<div>
-<iframe id="jc_link1" style="width:600px;height:350px; float:left;" border="0" marginwidth="0" framespacing="0" marginheight="0" frameborder="0" noresize="" scrolling="no" vspale="0"></iframe>
-</div>
-<div class="tiyi03">
-<div id="jc_close1" style="cursor:pointer"><img src="http://www.xinhuanet.com/images/syicon/space.gif" width="24" height="24" border="0" />
-</div>
-</div>
-</div>
-</span>
-'''
-
 
 if __name__ == '__main__':
     
