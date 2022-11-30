@@ -2,6 +2,26 @@
 
 <center>姓名：刘洺皓 学号：521030910014 班级：F2103001</center>
 
+## 0.项目结构 ##
+```
+-| app # Wbe前端
+-| crawl
+    -| crawler.py # 爬取网页
+    -| final.py # 在爬虫爬取网页的过程中直接分析网页，并建立索引，期望能够模仿
+    Mercator 模式
+-| Index 
+    -| IndexFiles.py # 利用Lucene的WhitespaceAnalyzer进行中文分词后的索引建立
+    -| SearchFiles.py # 实现对于索引读取，索引的增删改查，相似结果的过滤和不同query方式的实现
+-| stopwords # 停用词
+-| Textprocessor
+    -| Textprocessor.py # 基本HTML网页处理，获取相关文本信息，捕捉图片相关信息，实现中文分词
+-| Tools
+    -| Adaptive PageRank Algorithm.pdf # GoogleScholar上的对于Pagerank上的优化
+    -| Bloomfilter.py # 利用k重哈希查重的思想对于已爬取网页进行过滤，减少碰撞概率
+    -| Pagerank.py # 实现了Pagerank, Adaptive PageRank, Simhash文本查重等算法
+    -| Pagerank.txt # 经由Pagerank算法得到的实例
+``` 
+
 ## 1.项目概述 ## 
 &emsp;本项目旨在实现一个小型搜索引擎，其实现的基本原理如下：
 * 利用python的urllib库和HTTP Base Handler库来实现网页爬取
