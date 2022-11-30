@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block script %}
+<script>
+    function navigate(){
+        location.reload();
+    }
+    var tar;
+    if (location.pathname == '/search'){
+        tar = String(window.location.href).replace(/search/, 'stastics/search');
+        alert('hello');
+    }
+    else if (location.pathname == '/images'){
+        tar = String(window.location.href).replace(/images/, 'stastics/images');
+    }
+    fetch(tar).then(navigate);
+</script>
+{% endblock %}
+
+{% block blank %}
+<body>
+    <div class="loader"></div>
+</body>
+<div class="card-section">
+    <p aria-level="3" role="heading">
+        正在搜索与“<span>
+            <em>{{searchContent}}</em>
+        </span>”相符的内容或信息...
+    </p>
+    
+</div>
+
+{% endblock %}

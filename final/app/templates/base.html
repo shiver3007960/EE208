@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>{% block title%}google - Google search{% endblock %}</title>
+    {% block stylesheet %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    {% endblock %}
+
+    {% block script %}
+    {% endblock %}
+
+    <link rel="shortcut icon" href="../static/shortcut icon/googlenav.ico">
+</head>
+<body>
+    {% block prompt %}
+    {% endblock %}
+    
+    {% block body %}
+    {% endblock %}
+    <header>
+        {% block header%}
+        <div class="container">
+            <h2> Humanity is a thin layer of bacteria hurtling through the void</h2>
+        </div>  
+        {% endblock %}
+    </header>
+    <div class="hr_dotted"></div>
+    <nav>
+        {% block nav%}
+        {% endblock %}
+    </nav>
+    <div class="hr_dotted"></div>
+    <section class="main">
+        <article>
+            {% block article%}
+            {% endblock %}
+        </article>
+        <aside>
+            {% block aside%}
+
+            {% endblock %}
+        </aside>
+    </section>
+    <footer>
+        {% block footer%}
+        <div class="container">
+            <p>Copyright © 127.0.0.8080 All Rights Reserved.</p>
+        </div>
+        {% endblock %}
+    </footer>
+</body>
+</html>

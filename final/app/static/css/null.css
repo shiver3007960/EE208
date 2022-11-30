@@ -1,0 +1,391 @@
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    height: 100vh;
+    width: 100%;
+}
+/* 重置样式 通配符*/
+*{
+    font-family: Arial;
+    font-size:14px;
+    margin: 0;
+    padding: 0;
+    border: none
+}
+ul li {
+    list-style: none
+}
+a{
+    text-decoration: none
+}
+/* 头部 */
+header{
+    position: relative;
+    line-height: 25px;
+    height: 10vh;
+    width: 1000px;
+    padding: 1px;
+    display: flex;
+    flex-wrap: nowrap;
+}
+header .searchBox{
+    height: 100%;
+    width: 80%;
+    display:flex;
+    justify-content:flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+header .logo{
+    padding: 20px 20px 20px 30px;
+}
+header .query{
+    height: 44px;
+    
+}
+header .queryBox{
+    position: relative;
+    height: 44px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+header .searchHistory{
+    position: inherit;
+}
+header ul.searchHistoryItems{
+    justify-content: flex-start;
+    flex-direction: column;
+    display: none;
+    
+}
+header .searchHistoryItems li{
+    background-color: whitesmoke;
+    height: 34.5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 16px;
+    font-family:Arial, Helvetica, sans-serif;
+    z-index: 20;
+}
+
+header .searchHistoryItems li:hover{
+    /* background-color: #FE2D46; */
+    background-color: #d6d6d6;
+    
+}
+header .searchHistoryItems li[role="closure"]{
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+header .searchHistoryItems li[role="closure"]{
+    font-family: arial,sans-serif;
+    text-align: left;
+    font-size: 8pt;
+    text-decoration: none;
+    color: #70757a;
+    font-style: italic;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    padding: 0 5px 0 10px;
+    
+}
+header .searchHistoryItems li[role="closure"]:hover{
+    text-decoration: underline;
+    color: blue;
+}
+header div.searchPart{
+    position: relative;
+    height: 44px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+header .before-half-radius{
+    position: relative;
+    background-color:gainsboro;
+    height:44px;
+    width:22px;
+    border-top-left-radius: 22px;
+    border-bottom-left-radius: 22px;
+    order: 0;
+}
+header .submitbutton{
+    background-color:gainsboro;
+    position: relative;
+    height: 44px;
+    width: 24px;
+    order: 1;
+}
+header button.submitButton{
+    position: relative;
+    top: 2px;
+    width: 24px;
+    height: 24px;
+}
+header .searchPart > .searchInput{
+    width: 400px;
+    order: 3;
+}
+header .searchQuery{
+    width: 400px;
+    height: 44px;
+    background-color: gainsboro;
+}
+header svg.searchBox{
+    position: relative;
+    top:8px;
+    width: 24px;
+    height: 24px;
+    background-color:gainsboro;
+}
+header svg.searchBox:hover{
+    text-decoration: underline;
+    box-shadow: 1px 1px 1px inset;
+}
+header .backslash{
+    background-color:gainsboro;
+    height: 44px;
+    width: 24px;
+    order: 4;
+}
+header .speaker{
+    background-color:gainsboro;
+    height: 44px;
+    width: 24px;
+    order: 5;
+}
+header .rear-half-radius{
+    left: calc(94px + 40px + 22px + 3*24px);
+    background-color:gainsboro;
+    height:44px;
+    width:22px;
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
+    order: 6;
+}
+
+header .searchHistory{
+    position: inherit;
+}
+header ul.searchHistoryItems{
+    justify-content: flex-start;
+    flex-direction: column;
+    display: none;
+    
+}
+header .searchHistoryItems li{
+    background-color: whitesmoke;
+    height: 34.5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 16px;
+    font-family:Arial, Helvetica, sans-serif;
+    z-index: 20;
+}
+
+header .searchHistoryItems li:hover{
+    /* background-color: #FE2D46; */
+    background-color: #d6d6d6;
+    
+}
+header .searchHistoryItems li[role="closure"]{
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+header .searchHistoryItems li[role="closure"]{
+    font-family: arial,sans-serif;
+    text-align: left;
+    font-size: 8pt;
+    text-decoration: none;
+    color: #70757a;
+    font-style: italic;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    padding: 0 5px 0 10px;
+    
+}
+header .searchHistoryItems li[role="closure"]:hover{
+    text-decoration: underline;
+    color: blue;
+}
+header .moreSettings{
+    position: relative;
+    width: 40%;
+    left:30%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+header .moresettings button.settingButton, header .moreSettings button.settingButton{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 25px 0 25px;
+    margin: 0 20px 0 20px;
+    background-color: transparent;
+}
+header button.settingButton:hover{
+    background-color: gainsboro;
+    opacity: 0.8;
+}
+header .moreSettings svg{
+    position: relative;
+    top:-4px;
+    left:-15px;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+}
+nav{
+    line-height: 30px;
+    text-align: left;
+    height: 6%;
+    width: 1000px;
+    padding: 1px;
+    justify-items: flex-start;
+    align-items: center;
+    display: flex;
+}
+.NavigationBar{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-items: flex-start;
+    align-items: center;
+}
+svg.Navigationitem{
+    width: 20px;
+    height: 20px;
+}
+svg.Navigation:hover{
+    width: 25px;
+    height: 25px;
+}
+div.Navigationitem{
+    padding-left: 10px;
+    padding-right: 5px;
+}
+span.Navigationitem{
+    font-size: medium;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: black;
+}
+span.Navigationitem:hover{
+    text-decoration: underline;
+    color:mediumblue;
+}
+.hr_dotted{
+    border:0;
+    border-top: 2px solid;
+    color: gainsboro;
+    width: 1000px;
+}
+.article_hr_dotted{
+    border:0;
+    border-top: 1px solid;
+    color: gainsboro;
+    width: 80%;
+}
+/* main */
+.main{
+    position: relative;
+    width: 1000px;
+    height: 800px;
+    margin: 10px 10px 10px 10px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+}
+
+.main > article{
+    position: relative;
+    float: left;
+    width: calc(80% - 30px);
+    overflow: hidden;
+    padding: 10px;
+    white-space: nowrap;
+    
+}
+.main > article > div.card-section p[role="heading"]{
+    color: #202124;
+    --center-width: 652px;
+    --rhs-width: 369px;
+    --center-abs-margin: 28px;
+    --rhs-margin: 44px;
+    font-family: arial,sans-serif;
+    font-size: medium;
+    font-weight: normal;
+    line-height: 1.2;
+    padding-top: .33em;
+}
+#\37 83e2{
+    color: #202124;
+    font-family: arial,sans-serif;
+    font-size:large;
+    font-weight: normal;
+    line-height: 1.2;
+    margin-top: 1em;
+}
+
+.main > article > div.card-section ul{
+    color: #202124;
+    font-family: arial,sans-serif;
+    font-size: medium;
+    font-weight: normal;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+    margin-left: 1.3em;
+    margin-bottom: 2em;
+}
+body > section > article div ul li{
+    color: #202124;
+    font-family: arial,sans-serif;
+    font-size: medium;
+    font-weight: normal;
+    line-height: 1.2;
+    margin: 0;
+    padding: 3px 0 3px 0;
+    list-style: circle;
+}
+footer{
+    background-color: gainsboro;
+    top: calc(16% + 42px + 800px);
+    height: 100px;
+    width: 100%;
+    clear: both;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    background-color: #d6d6d6;
+}
+footer > .footercontainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+}
+footer .aboutInfobar,footer .environmentBar,footer .personalInfoBar{
+    background-color:transparent;
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+footer .aboutInfobar a,footer .environmentBar a,footer .personalInfoBar a{
+    font-size: small;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-decoration: none;
+    color: white;
+    padding: 2px 10px 2px 10px;
+}
+footer .aboutInfobar a:hover, footer .environmentBar a:hover,footer .personalInfoBar a:hover{
+    text-decoration: underline;
+}

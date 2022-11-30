@@ -1,0 +1,422 @@
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    height: 100vh;
+    width: 100%;
+}
+/* 重置样式 通配符*/
+*{
+    font-family: Arial;
+    font-size:14px;
+    margin: 0;
+    padding: 0;
+    border: none
+}
+ul li {
+    list-style: none
+}
+a{
+    text-decoration: none
+}
+/* 头部 */
+header{
+    position: fixed;
+    line-height: 25px;
+    height: 75px;
+    width: 100%;
+    padding: 1px;
+    z-index: 20;
+    background-color: azure;
+}
+header .searchBox{
+    height: 10vh;
+    width: 100%;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}
+header .logo{
+    
+    padding: 20px 20px 20px 30px;
+}
+header .queryBox{
+    height: 44px;
+    width: 100%;
+}
+header div.searchPart{
+    height: 44px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+header .before-half-radius{
+    position: relative;
+    background-color:gainsboro;
+    height:44px;
+    width:22px;
+    border-top-left-radius: 22px;
+    border-bottom-left-radius: 22px;
+    order: 0;
+}
+header .submitbutton{
+    background-color:gainsboro;
+    position: relative;
+    height: 44px;
+    width: 24px;
+    order: 1;
+}
+header button.submitButton{
+    position: relative;
+    top: 2px;
+    width: 24px;
+    height: 24px;
+}
+header .searchPart > .searchInput{
+    width: 400px;
+    order: 3;
+}
+header .searchQuery{
+    width: 400px;
+    height: 44px;
+    background-color: gainsboro;
+}
+header svg.searchBox{
+    position: relative;
+    top:8px;
+    width: 24px;
+    height: 24px;
+    background-color:gainsboro;
+}
+header svg.searchBox:hover{
+    text-decoration: underline;
+    box-shadow: 1px 1px 1px inset;
+}
+header .backslash{
+    background-color:gainsboro;
+    height: 44px;
+    width: 24px;
+    order: 4;
+}
+header .speaker{
+    background-color:gainsboro;
+    height: 44px;
+    width: 24px;
+    order: 5;
+}
+header .rear-half-radius{
+    left: calc(94px + 40px + 22px + 3*24px);
+    background-color:gainsboro;
+    height:44px;
+    width:22px;
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
+    order: 6;
+}
+header .searchHistory{
+    width: 516px;
+    left: calc(50px + 92px);
+}
+header ul.searchHistoryItems{
+    justify-content: flex-start;
+    flex-direction: column;
+    display: none;
+}
+header .searchHistoryItems li{
+    background-color: whitesmoke;
+    height: 34.5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 16px;
+    font-family:Arial, Helvetica, sans-serif;
+    z-index: 20;
+}
+
+header .searchHistoryItems li:hover{
+    /* background-color: #FE2D46; */
+    background-color: #d6d6d6;
+    
+}
+header .searchHistoryItems li[role="closure"]{
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+header .searchHistoryItems li[role="closure"]{
+    font-family: arial,sans-serif;
+    text-align: left;
+    font-size: 8pt;
+    text-decoration: none;
+    color: #70757a;
+    font-style: italic;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    padding: 0 5px 0 10px;
+    
+}
+header .searchHistoryItems li[role="closure"]:hover{
+    text-decoration: underline;
+    color: blue;
+}
+header .headerrear_hrdotted{
+    border:0;
+    border-top: 2px solid;
+    color: gainsboro;
+    width: 100%
+}
+nav{
+    position: relative;
+    top: 75px;
+    line-height: 30px;
+    text-align: left;
+    height: 85px;
+    width: 100vh;
+    display: flex;
+    align-items: center;
+}
+nav .NavigationBar{
+    width:100%;
+    text-size-adjust: 100%;
+    color:black;
+    font-family: Roboto,HelveticaNeue,Arial,sans-serif;
+    font-size: small;
+    display: block;
+    overflow-x: auto;
+    position: relative;
+    white-space: nowrap;
+    margin-top: 16px;
+    padding: 0 20px 16px;
+}
+nav div.picWrapper{
+
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    border-style: solid;
+    border-color: gainsboro;
+    border-radius: 7px;
+    width: 135px;
+    height: 48px;
+    display: inline-block;
+
+}
+nav div.picWrapper img{
+    border-radius: 5px;
+    margin-right: 5px;
+}
+nav span.picInfo{
+    position: relative;
+    top: -20px;
+    padding-left: 8px;
+    font-size: 16px;
+    color:#3C4043;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+}
+nav span.picInfo:hover{
+    text-decoration: underline;
+    color:mediumblue;
+}
+.hr_dotted{
+    display: none;
+}
+.article_hr_dotted{
+    border:0;
+    border-top: 1px solid;
+    color: gainsboro;
+    width: 100%;
+    text-align: center;
+}
+.main > article{
+    position: relative;
+    top:60px;
+    width: 100%;
+    overflow: hidden;
+    padding: 10px;
+    white-space: nowrap;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 1500px;
+}
+.main > article .articlefront_hrdotted{
+    border: 2px 0 0 0;
+    border-top: 2px solid;
+    color: gainsboro;
+    width: 100%;
+    display: block;
+}
+.main > article div.picturePool div.picFrame{
+    width:100%;
+    height: 1500px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+.main div.picFrame div.picItem{
+    
+    color: black;
+    font-family: Roboto,HelveticaNeue,Arial,sans-serif;
+    font-size: small;
+
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 20px;
+    width: 180px;
+    height: 222px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.main div.picFrame div.picItem .picDescription{
+    display: none;
+}
+.main div.picFrame div.picItem div.picSrc img{
+    background-color: gainsboro;
+    height: 180px;
+}
+.main div.picFrame div.picItem div.picSrc img:hover{
+    border-style: solid;
+    border-color: gainsboro;
+}
+.main div.picFrame div.picItem a.picWebLink{
+    margin: 6px 0 0;
+    padding: 0 4px;
+    text-decoration: none;
+    height: 36px;
+    width: 180px;
+   
+}
+.main div.picFrame div.picItem span.picBrief{
+    color: #3c4043;
+    font-size: 12px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    height: 20px;
+}
+.main div.picFrame div.picItem a.picWebLink:hover{
+    text-decoration: underline;
+}
+.main div.picFrame div.picItem div.picWebUrl{
+    color: #5F6368;
+    font-size: 11px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 13px;
+}
+.main .pagechangetable{
+    margin-top: 100px;
+    border-collapse:collapse;
+    text-align:left;
+    width:50%;
+    height: 50px;
+    position: relative;
+    top:-200px;
+}
+.main .pagechangetable > tbody{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+
+}
+.main .pagechangetable .pagebkg[google-page-icon]{
+    content: url(../image/Googleicon2.png);
+    height: 26px;
+    width: 20px;
+    padding: 3px 1px 2px;
+    
+}
+.main .pagechangetable .pagebkg[google-page-icon="0"]{
+    content: url(../image/Googleicon0.png);
+    height: 40px;
+    width: 40px;
+    padding: 3px 1px 2px;
+    position: relative;
+    top: -18px;
+}
+.main .pagechangetable .pagebkg[google-page-icon="1"]{
+    content: url(../image/Googleicon1.png);
+    height: 26px;
+    width: 20px;
+    padding: 3px 1px 2px;
+    position: relative;
+    top:-1px;
+}
+.main .pagechangetable .pagebkg[google-page-icon="g"]{
+    content: url(../image/Googleicon3.png);
+    height: 30px;
+    width: 20px;
+    padding: 3px 1px 2px;
+    position: relative;
+    top:-8px;
+}
+.main .pagechangetable .pagebkg[google-page-icon="l"]{
+    content: url(../image/Googleicon4.png);
+    height: 40px;
+    width: 13px;
+    padding: 3px 0;
+    position: relative;
+    top:-20px;
+
+}
+.main .pagechangetable .pagebkg[google-page-icon="e"]{
+    content: url(../image/Googleicon5.png);
+    height: 24px;
+    width: 20px;
+    padding: 3px 0;
+    position: relative;
+    top:-2px;
+}
+.main .pagechangetable .pagebkg~.pagenumber{
+    font-size: medium;
+    font-style: italic;
+    display: block;
+    color: black;
+}
+.main .pagechangetable td[class="currentpage"] .pagebkg~.pagenumber{
+    color: dodgerblue;
+}
+.main .pagechangetable .pagebkg~.pagenumber:hover{
+    text-decoration: underline;
+}
+.main .pagechangetable [role="heading"]{
+    position: relative;
+    left: -6px;
+}
+footer{
+    background-color: gainsboro;
+    top: calc(160px + 1500px);
+    height: 100px;
+    width: 100%;
+    clear: both;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    background-color: #d6d6d6;
+}
+footer > .footercontainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+}
+footer .aboutInfobar,footer .environmentBar,footer .personalInfoBar{
+    background-color:transparent;
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+footer .aboutInfobar a,footer .environmentBar a,footer .personalInfoBar a{
+    font-size: small;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-decoration: none;
+    color: white;
+    padding: 2px 10px 2px 10px;
+}
+footer .aboutInfobar a:hover, footer .environmentBar a:hover,footer .personalInfoBar a:hover{
+    text-decoration: underline;
+}
