@@ -167,7 +167,7 @@ presentQuery函数需要注意以下几点:
 ## 4.效果展示 ## 
 
 * 主页
-![11.30.2](https://cdn.jsdelivr.net/gh/Learner209/snakegame@master/img/11.30.2.png)
+![12.1.1](https://cdn.jsdelivr.net/gh/Learner209/snakegame@master/img/12.1.1.png)
 
 * 搜索结果页
 ![11.30.1](https://cdn.jsdelivr.net/gh/Learner209/snakegame@master/img/11.30.1.png)
