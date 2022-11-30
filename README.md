@@ -4,7 +4,7 @@
 
 ## 0.项目结构 ##
 ```
--| app # Wbe前端
+-| app # Web前端
 -| crawl
     -| crawler.py # 爬取网页
     -| final.py # 在爬虫爬取网页的过程中直接分析网页，并建立索引，期望能够模仿
@@ -120,8 +120,8 @@ presentQuery函数需要注意以下几点:
   * 在确认好目标tag的打分的基数后，接下来进入主要的标签文本的查找与过滤,这里因为标签所含内容可能大相径庭，鱼龙混杂，需要进行较多的isinstance检查，这里仍旧将目标tag的title属性作为优先级最高的attribute对待，值得注意的是，如果title中含中文，其*credential*也会提升，其打分机制为*coefficient*为0.75，基数为0.55。
   * 接下来去遍历这个标签的孩子们，即调用*lxml*的`items(）`方法，并调用`_filterAttrorText`函数来过滤文本寻找semantic *segment*,如果其数量大于0小于20，就认为这是一个潜在的与图片相关的信息元素，但是其*credential*会稍有下降，其打分机制为*coefficient*为0.8,基数为0.55.
   * 最终检查这个标签的plain text,因为在该scope中的文本出现图片相关信息的可能性比`items()`的概率相对提升,其打分机制为*coefficient*为0.75,基数为0.6.
-    * 如果该标签类型为超链接，并且其scope为1，可以直接认为这个超链接作为图片标签的父亲，是这一个图片item的总领，可以直接调用*lxml*的itertext函数。
-    * 但在目标tag是*div,span,a*且scope不为1时，在`filterTags`函数中递归调用`filterTags`，对象为该函数tag下的`iterchildren`的迭代器，而其每一个child的scope都会自动下降0.05,这基于一个图片与其文本是分列在不同的div标签中的假设，这种图片与文本分列并居于同一个大div分组的网页排版，这经常运用在tmall,taobao,migu等国内网站中，这也是除专业图片素材网站外许多大型网站的图片典型排版方式。
+  * 如果该标签类型为超链接，并且其scope为1，可以直接认为这个超链接作为图片标签的父亲，是这一个图片item的总领，可以直接调用*lxml*的itertext函数。
+  * 但在目标tag是*div,span,a*且scope不为1时，在`filterTags`函数中递归调用`filterTags`，对象为该函数tag下的`iterchildren`的迭代器，而其每一个child的scope都会自动下降0.05,这基于一个图片与其文本是分列在不同的div标签中的假设，这种图片与文本分列并居于同一个大div分组的网页排版，这经常运用在tmall,taobao,migu等国内网站中，这也是除专业图片素材网站外许多大型网站的图片典型排版方式。
    
 * `filterAttrOrText`函数
   * 主要完成对于一个标签内所含的plain text中的有效semantic *segment*的查询
@@ -154,6 +154,8 @@ presentQuery函数需要注意以下几点:
         -| host.css
         -| images.css
         -| news.css
+        -| null.css
+        -| prompt.css
         -| style.css
         -| test.css
     -| image
@@ -164,8 +166,9 @@ presentQuery函数需要注意以下几点:
     -| js
         -| form.js
         -| host.js
-        -| iamges.js
+        -| images.js
         -| new.js
+        -| null.js
     -| shortcut icon #用来存储小型图片，常用在favorite-icon和小图标的展示
 -| stopwords    #停用次，TextProcessing文件需要
 -| templates
@@ -173,8 +176,10 @@ presentQuery函数需要注意以下几点:
     -| form.html    # 搜索页面的展示，继承了header, nav, aside, article, footer几个区块
     -| host.html    # 起始页面
     -| images.html  #图片网站
-    -| index.html
-    -| news.html    #新闻网站
+    -| index.html   # 加载页面
+    -| news.html    # 新闻网站
+    -| null.html   # 搜索结果为空时返回页面，作为 index.html的父类
+    -| prompt.html # 跳出提示框的基本代码
 -| app.py   # 主文件
 -| crawler.py   # 请求网页数据
 -| dataStore.py     #实现对于零散网页业务的处理，存储图片，获取热点消息等等
